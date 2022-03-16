@@ -1,6 +1,8 @@
 package com.example.lpc.lib_common.application
 
 import android.app.Application
+import android.util.Log
+import com.alibaba.android.arouter.launcher.ARouter
 
 /**
  * Author: liupengchao
@@ -12,6 +14,12 @@ open class BaseApplication() : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        //初始化路由
+        ARouter.init(this)
+        ARouter.openLog()
+        ARouter.openDebug()
+
+        Log.e("BaseApplication", "onCreate: ", )
     }
 
 }

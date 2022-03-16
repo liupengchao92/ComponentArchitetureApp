@@ -1,6 +1,7 @@
 package com.example.lpc.componentachitecture.application
 
 import android.util.Log
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.lpc.lib_common.application.BaseApplication
 
 /**
@@ -14,6 +15,7 @@ class MyApplication() : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
 
-        Log.d("MyApplication", "onCreate: ")
+
+        Log.e("MyApplication", "onCreate: ")
     }
 }
