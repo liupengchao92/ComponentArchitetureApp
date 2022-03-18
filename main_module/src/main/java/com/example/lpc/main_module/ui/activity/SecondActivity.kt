@@ -1,4 +1,4 @@
-package com.example.lpc.main_module.ui
+package com.example.lpc.main_module.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

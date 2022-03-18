@@ -1,4 +1,4 @@
-package com.example.lpc.lib_common.base
+package com.example.lpc.lib_common.base.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

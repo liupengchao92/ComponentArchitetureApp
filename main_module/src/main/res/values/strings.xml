@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">main_moudle</string>
+    <string name="app_name">main_module</string>
+    <string name="home">首页</string>
+    <string name="question">问答</string>
+    <string name="navigation">导航</string>
+    <string name="profile">我的</string>
+
+    <string name="category">分类</string>
+    <string name="collection">收藏</string>
+
 </resources>

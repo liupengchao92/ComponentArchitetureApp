@@ -4,9 +4,9 @@
 
     <application>
 
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.activity.MainActivity" />
 
-        <activity android:name=".ui.SecondActivity" />
+        <activity android:name=".ui.activity.SecondActivity" />
 
     </application>
 </manifest>
