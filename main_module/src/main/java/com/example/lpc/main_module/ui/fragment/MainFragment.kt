@@ -19,8 +19,6 @@ import com.google.android.material.navigation.NavigationBarView
  */
 class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
 
-
-
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?

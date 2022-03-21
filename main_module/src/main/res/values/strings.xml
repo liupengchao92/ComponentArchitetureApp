@@ -7,5 +7,9 @@
 
     <string name="category">分类</string>
     <string name="collection">收藏</string>
+    <string name="refresh">新</string>
+    <string name="top">置顶</string>
+
+
 
 </resources>
