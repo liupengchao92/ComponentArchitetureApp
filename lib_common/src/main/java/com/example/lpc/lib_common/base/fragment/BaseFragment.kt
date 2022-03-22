@@ -32,7 +32,6 @@ abstract class BaseFragment() : Fragment() {
             override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
                 if (event == Lifecycle.Event.ON_CREATE) {
 
-                    onCreate()
 
                     //移除观察者
                     lifecycle.removeObserver(this)
@@ -55,13 +54,16 @@ abstract class BaseFragment() : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        onLoadData()
     }
 
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         LogUtils.e("onActivityCreated=====>>")
+
+        onCreate()
+
+        onLoadData()
 
     }
 
