@@ -8,6 +8,8 @@ import com.example.lpc.lib_common.base.fragment.BaseFragment
 import com.example.lpc.main_module.R
 import com.example.lpc.main_module.ui.adapter.ArticleAdapter
 import com.example.lpc.main_module.ui.viewmodel.HomeViewModel
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import kotlinx.android.synthetic.main.fragment_home.*
 
 /**
@@ -27,6 +29,8 @@ class HomeFragment : BaseFragment() {
 
     override var layoutResId: Int = R.layout.fragment_home
 
+    private var isRefresh: Boolean = false;
+
 
     override fun onCreate() {
 
@@ -35,6 +39,17 @@ class HomeFragment : BaseFragment() {
             adapter = this@HomeFragment.adapter;
             itemAnimator = DefaultItemAnimator()
         }
+        //刷新
+        refreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+            override fun onRefresh(refreshLayout: RefreshLayout) {
+                viewModel.getArticle(0)
+                isRefresh = true;
+            }
+
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                viewModel.getArticle(adapter.page)
+            }
+        })
     }
 
     override fun onLoadData() {
@@ -42,9 +57,14 @@ class HomeFragment : BaseFragment() {
         viewModel.getArticle(0)
 
         viewModel.articleLiveData.observe(this, Observer {
-
-            adapter.setNewInstance(it)
-
+            if (isRefresh) {
+                adapter.setNewInstance(it)
+                refreshLayout.finishRefresh();
+                isRefresh = false;
+            } else {
+                adapter.addData(it)
+                refreshLayout.finishLoadMore();
+            }
         })
     }
 }

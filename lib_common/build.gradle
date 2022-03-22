@@ -56,10 +56,10 @@ dependencies {
     api 'com.blankj:utilcodex:1.31.0'
 
     def nav_version = "2.4.1"
-    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    api "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    api "androidx.navigation:navigation-ui-ktx:$nav_version"
 
-    implementation 'com.google.android.material:material:1.0.0'
+    api 'com.google.android.material:material:1.0.0'
 
     def retrofit_version = '2.9.0'
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
@@ -71,6 +71,11 @@ dependencies {
 
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
 
+    //SmartRefreshLayout
+    def refresh_version = "2.0.3"
+    api "com.scwang.smart:refresh-layout-kernel:$refresh_version"//核心必须依赖
+    api "com.scwang.smart:refresh-header-classics:$refresh_version"//经典刷新Header
+    api "com.scwang.smart:refresh-footer-classics:$refresh_version"//经典加载Footer
 
 
 }
