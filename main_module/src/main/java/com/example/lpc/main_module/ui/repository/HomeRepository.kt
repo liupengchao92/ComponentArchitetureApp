@@ -5,6 +5,7 @@ import com.example.lpc.lib_common.base.repository.IRemoteDataSource
 import com.example.lpc.lib_common.extension.processApiResponse
 import com.example.lpc.lib_common.http.Results
 import com.example.lpc.lib_common.http.pojo.Article
+import com.example.lpc.lib_common.http.pojo.Banner
 import com.example.lpc.lib_common.http.pojo.PageVo
 import com.example.lpc.lib_common.http.retrofit.RetrofitHelper
 
@@ -23,6 +24,10 @@ class HomeRepository(var dataSource: HomeRemoteDataSource) :
         return dataSource.getArticle(page)
     }
 
+    suspend fun getBanner(): Results<MutableList<Banner>> {
+        return dataSource.getBanner()
+    }
+
 }
 
 class HomeRemoteDataSource : IRemoteDataSource {
@@ -30,6 +35,10 @@ class HomeRemoteDataSource : IRemoteDataSource {
     suspend fun getArticle(page: Int): Results<PageVo<Article>> {
 
         return processApiResponse { RetrofitHelper.apiService.getHomeArticle(page) }
+    }
+
+    suspend fun getBanner(): Results<MutableList<Banner>> {
+        return processApiResponse { RetrofitHelper.apiService.getBanner() }
     }
 }
 

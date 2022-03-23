@@ -77,5 +77,8 @@ dependencies {
     api "com.scwang.smart:refresh-header-classics:$refresh_version"//经典刷新Header
     api "com.scwang.smart:refresh-footer-classics:$refresh_version"//经典加载Footer
 
+    implementation 'com.github.bumptech.glide:glide:4.13.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.0'
+
 
 }
