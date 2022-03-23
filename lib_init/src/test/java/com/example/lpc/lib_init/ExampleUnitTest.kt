@@ -1,4 +1,4 @@
-package com.example.lpc.start_init
+package com.example.lpc.lib_init
 
 import org.junit.Test
 
