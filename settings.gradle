@@ -19,5 +19,6 @@ rootProject.name = "ComponentAchitecture"
 include ':app'
 include ':lib_common'
 include ':main_module'
-include ':lib_init'
+include ':compile'
 include ':annotation'
+include ':li_init_api'

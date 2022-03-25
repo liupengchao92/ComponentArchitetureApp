@@ -18,7 +18,8 @@ class SplashActivity : BaseActivity() {
 
         gotoMain.setOnClickListener {
             //跳转到主Activity
-            ARouter.getInstance().build(ARouterConstant.Main.INDEX_PATH).navigation()
+           // ARouter.getInstance().build(ARouterConstant.Main.INDEX_PATH).navigation()
+            ARouter.getInstance().build(ARouterConstant.Main.LOGIN_PATH).navigation()
 
         }
     }

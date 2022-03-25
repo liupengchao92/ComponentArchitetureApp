@@ -15,6 +15,8 @@ object ARouterConstant {
         const val INDEX_PATH = "/main/index"
 
         const val SECOND_PATH = "/main/second"
+
+        const val LOGIN_PATH = "/login/second"
     }
 
     object App{

@@ -1,9 +1,8 @@
 package com.example.lpc.lib_common.application
 
 import android.app.Application
-import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.ToastUtils
+import com.example.lpc.api.AppInitManager
 
 /**
  * Author: liupengchao
@@ -20,7 +19,8 @@ open class BaseApplication() : Application() {
         ARouter.openLog()
         ARouter.openDebug()
 
-        Log.e("BaseApplication", "onCreate: ", )
+        AppInitManager.start(this)
+
     }
 
 }
