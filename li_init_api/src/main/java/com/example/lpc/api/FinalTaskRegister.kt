@@ -1,7 +1,7 @@
 package com.example.lpc.api
 
-import com.example.lpc.annotation.ITask
 import com.example.lpc.annotation.ModuleTaskRegister
+import com.example.lpc.annotation.TaskInfo
 import java.lang.reflect.InvocationTargetException
 
 /**
@@ -12,8 +12,8 @@ import java.lang.reflect.InvocationTargetException
  */
 object FinalTaskRegister {
 
-    fun register(): MutableList<ITask> {
-        var taskList = mutableListOf<ITask>()
+    fun register(): MutableList<TaskInfo> {
+        var taskList = mutableListOf<TaskInfo>()
         try {
             val taskRegister = Class.forName("com.example.lpc.register.TaskRegister")
             var newInstance: ModuleTaskRegister = taskRegister.newInstance() as ModuleTaskRegister

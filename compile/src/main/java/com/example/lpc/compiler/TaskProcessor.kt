@@ -1,8 +1,8 @@
 package com.example.lpc.compiler
 
-import com.example.lpc.annotation.ITask
 import com.example.lpc.annotation.InitTask
 import com.example.lpc.annotation.ModuleTaskRegister
+import com.example.lpc.annotation.TaskInfo
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
 import javax.annotation.processing.AbstractProcessor
@@ -76,12 +76,11 @@ class TaskProcessor : AbstractProcessor() {
 
             var typeElement = elementUtils.getTypeElement("com.example.lpc.annotation.ITask")
 
-
             val parameterType =
                 ClassName(
                     "kotlin.collections",
                     "MutableList"
-                ).parameterizedBy(ITask::class.asTypeName())
+                ).parameterizedBy(TaskInfo::class.asTypeName())
 
             val parameterSpec =
                 ParameterSpec.builder(ProcessorUtils.PARAM_NAME, parameterType).build()
@@ -92,18 +91,21 @@ class TaskProcessor : AbstractProcessor() {
 
 
             taskElements.forEach { element ->
-
+                //获取元素上的InitTask注解
                 var task = element.getAnnotation(InitTask::class.java)
-
+                //获取元素的类型
                 var typeMirror = element.asType()
-
+                //判断类型
                 if (typeUtils.isSubtype(typeMirror, typeElement.asType())) {
 
                     var taskClassName = (element as TypeElement).asClassName()
 
                     methodSpec.addStatement(
-                        "%N.add(%T())",
+                        "%N.add(%T(%S,%L,%T()))",
                         ProcessorUtils.PARAM_NAME,
+                        TaskInfo::class.java,
+                        task.name,
+                        task.background,
                         taskClassName
                     )
                 }

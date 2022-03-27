@@ -8,4 +8,14 @@ package com.example.lpc.annotation
  */
 @Target(AnnotationTarget.CLASS)
 @Retention(AnnotationRetention.RUNTIME)
-annotation class InitTask(val name: String)
+annotation class InitTask(
+    /**
+     * 任务名称
+     */
+    val name: String = "",
+
+    /**
+     *是否是子线程
+     */
+    val background: Boolean = false
+)

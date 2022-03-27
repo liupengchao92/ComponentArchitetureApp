@@ -9,14 +9,17 @@ import android.util.Log
  * ClassName :AppInitManager
  * Desc:
  */
-class AppInitManager private constructor(val application: Application, val processName: String) {
+class AppInitManager private constructor(private val app: Application, val processName: String) {
 
+    /**
+     * 开始任务
+     */
     fun start() {
 
         var register = FinalTaskRegister.register()
         Log.e("AppInitManager", "start: ${register.size}")
         register.forEach {
-            ( it as IInitTask).execute(application)
+            (it.task as IInitTask).execute(app)
         }
 
     }

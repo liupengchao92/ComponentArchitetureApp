@@ -8,6 +8,6 @@ package com.example.lpc.annotation
  */
 interface ModuleTaskRegister {
 
-    fun register(taskList: MutableList<ITask>)
+    fun register(taskList: MutableList<TaskInfo>)
 
 }
