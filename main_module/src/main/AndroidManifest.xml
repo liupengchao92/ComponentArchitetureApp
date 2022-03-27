@@ -6,8 +6,11 @@
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.SecondActivity" />
         <activity
-            android:theme="@style/LoginTheme"
-            android:name=".ui.activity.LoginActivity" />
+            android:name=".ui.activity.ui.login.LoginActivity"
+            android:theme="@style/LoginTheme" />
+        <activity
+            android:name=".ui.activity.ui.register.RegisterActivity"
+            android:theme="@style/LoginTheme" />
     </application>
 
 </manifest>
