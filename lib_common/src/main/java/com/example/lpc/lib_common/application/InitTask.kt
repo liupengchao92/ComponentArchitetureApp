@@ -13,13 +13,13 @@ import com.example.lpc.api.IInitTask
  * Desc:
  */
 
-@InitTask(name = "MainTask")
+@InitTask(name = "MainTask",background = true)
 class MainTask : IInitTask {
 
 
     override fun execute(application: Application) {
 
-        LogUtils.e("执行任务=======>>MainTask")
+        LogUtils.e("MainTask=======>>${Thread.currentThread().name}")
     }
 
 }

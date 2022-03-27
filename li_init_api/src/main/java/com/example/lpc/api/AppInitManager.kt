@@ -1,7 +1,10 @@
 package com.example.lpc.api
 
 import android.app.Application
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
+import java.util.concurrent.Executors
 
 /**
  * Author: liupengchao
@@ -10,6 +13,10 @@ import android.util.Log
  * Desc:
  */
 class AppInitManager private constructor(private val app: Application, val processName: String) {
+    //
+    private val handler by lazy { Handler(Looper.getMainLooper()) }
+
+    private val threadPool = Executors.newFixedThreadPool(3)
 
     /**
      * 开始任务
@@ -19,9 +26,33 @@ class AppInitManager private constructor(private val app: Application, val proce
         var register = FinalTaskRegister.register()
         Log.e("AppInitManager", "start: ${register.size}")
         register.forEach {
-            (it.task as IInitTask).execute(app)
-        }
 
+            if (it.background) {
+
+                threadPool.execute {
+                    execute(it.task as IInitTask)
+                }
+
+            } else {
+
+                if (Looper.myLooper() == Looper.getMainLooper()) {
+                    execute(it.task as IInitTask)
+                } else {
+                    handler.post(Runnable {
+                        execute(it.task as IInitTask)
+                    })
+                }
+            }
+        }
+    }
+
+    private fun execute(task: IInitTask) {
+
+        runCatching {
+            task.execute(app)
+        }.onFailure {
+
+        }
     }
 
 
