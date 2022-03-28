@@ -10,13 +10,14 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.StringRes
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.ToastUtils
 import com.example.lpc.lib_common.base.activity.BaseBindingActivity
 import com.example.lpc.lib_common.constant.ARouterConstant
 import com.example.lpc.main_module.R
 import com.example.lpc.main_module.databinding.ActivityLoginBinding
+import com.example.lpc.main_module.ui.activity.MainActivity
 import com.example.lpc.main_module.ui.activity.ui.register.RegisterActivity
 
 @Route(path = ARouterConstant.Main.LOGIN_PATH)
@@ -46,16 +47,19 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
             val loginResult = it ?: return@Observer
 
             binding.loading.visibility = View.GONE
-            if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
+
+            //登录失败
+            if (!loginResult.error.isNullOrBlank()) {
+                showLoginFailed(loginResult.error!!)
             }
+            //登录成功
             if (loginResult.success != null) {
                 updateUiWithUser(loginResult.success)
+                setResult(Activity.RESULT_OK)
+                //Complete and destroy login activity once successful
+                finish()
+                startActivity(Intent(this, MainActivity::class.java))
             }
-            setResult(Activity.RESULT_OK)
-
-            //Complete and destroy login activity once successful
-            finish()
         })
 
         binding.usernameEt.afterTextChanged {
@@ -109,8 +113,8 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
         ).show()
     }
 
-    private fun showLoginFailed(@StringRes errorString: Int) {
-        Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
+    private fun showLoginFailed(errorString: String) {
+        ToastUtils.showShort(errorString)
     }
 
     override fun getViewBinding(): ActivityLoginBinding =

@@ -1,4 +1,4 @@
-package com.example.lpc.main_module.ui.activity.data.model
+package com.example.lpc.main_module.ui.activity.ui.login
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

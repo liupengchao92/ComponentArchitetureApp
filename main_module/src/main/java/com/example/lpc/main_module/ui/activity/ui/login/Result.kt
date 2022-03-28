@@ -1,4 +1,4 @@
-package com.example.lpc.main_module.ui.activity.data
+package com.example.lpc.main_module.ui.activity.ui.login
 
 /**
  * A generic class that holds a value with its loading status.

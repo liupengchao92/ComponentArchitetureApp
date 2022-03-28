@@ -4,6 +4,8 @@ package com.example.lpc.main_module.ui.activity.ui.login
  * Authentication result : success (user details) or error message.
  */
 data class LoginResult(
+
     val success: LoggedInUserView? = null,
-    val error: Int? = null
+
+    val error: String? = null
 )

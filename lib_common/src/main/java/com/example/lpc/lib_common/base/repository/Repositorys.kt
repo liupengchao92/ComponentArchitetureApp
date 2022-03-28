@@ -16,5 +16,6 @@ open class BaseRepositoryRemote<R : IRemoteDataSource>(var remoteDataSource: R) 
 
 open class BaseRepositoryLocal<L : ILocalDataSource>(var localDataSource: L):IRepository
 
+
 open class BaseRepositoryNothing() : IRepository
 

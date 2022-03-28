@@ -15,6 +15,7 @@
 
 
         <Button
+            android:enabled="false"
             android:id="@+id/loginBtn"
             style="@style/LoginButtonStyle"
             android:layout_marginHorizontal="20dp"
@@ -109,7 +110,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:hint="@string/prompt_username"
+            android:hint="@string/prompt_password"
             android:inputType="textPassword"
             android:maxLength="12"
             android:textColor="@color/white"
@@ -125,7 +126,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:hint="@string/prompt_password"
+            android:hint="@string/prompt_username"
             android:maxLength="8"
             android:textColor="@color/white"
             android:textColorHint="@color/white"

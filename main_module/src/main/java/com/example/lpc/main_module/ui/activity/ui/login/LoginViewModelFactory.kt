@@ -2,8 +2,6 @@ package com.example.lpc.main_module.ui.activity.ui.login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.lpc.main_module.ui.activity.data.LoginDataSource
-import com.example.lpc.main_module.ui.activity.data.LoginRepository
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.
@@ -16,7 +14,8 @@ class LoginViewModelFactory : ViewModelProvider.Factory {
         if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
             return LoginViewModel(
                 loginRepository = LoginRepository(
-                    dataSource = LoginDataSource()
+                    loginRemoteDataSource = LoginRemoteDataSource(),
+                    loginLocalDataSource = LoginLocalDataSource()
                 )
             ) as T
         }

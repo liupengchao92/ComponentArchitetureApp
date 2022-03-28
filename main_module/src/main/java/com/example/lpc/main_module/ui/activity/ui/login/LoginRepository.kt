@@ -1,13 +1,17 @@
-package com.example.lpc.main_module.ui.activity.data
+package com.example.lpc.main_module.ui.activity.ui.login
 
-import com.example.lpc.main_module.ui.activity.data.model.LoggedInUser
+import com.example.lpc.lib_common.base.repository.BaseRepositoryBoth
+import com.example.lpc.lib_common.http.Results
+import com.example.lpc.main_module.ui.activity.ui.login.LoggedInUser
+import com.example.lpc.main_module.ui.activity.ui.login.LoginLocalDataSource
+import com.example.lpc.main_module.ui.activity.ui.login.LoginRemoteDataSource
 
 /**
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
 
-class LoginRepository(val dataSource: LoginDataSource) {
+class LoginRepository(val loginRemoteDataSource: LoginRemoteDataSource,val loginLocalDataSource: LoginLocalDataSource):BaseRepositoryBoth<LoginRemoteDataSource,LoginLocalDataSource>(loginRemoteDataSource,loginLocalDataSource) {
 
     // in-memory cache of the loggedInUser object
     var user: LoggedInUser? = null
@@ -22,20 +26,14 @@ class LoginRepository(val dataSource: LoginDataSource) {
         user = null
     }
 
-    fun logout() {
+    suspend fun logout() {
         user = null
-        dataSource.logout()
+        loginRemoteDataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
-        // handle login
-        val result = dataSource.login(username, password)
+   suspend fun login(username: String, password: String): Results<String> {
 
-        if (result is Result.Success) {
-            setLoggedInUser(result.data)
-        }
-
-        return result
+        return loginRemoteDataSource.login(username,password)
     }
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {
