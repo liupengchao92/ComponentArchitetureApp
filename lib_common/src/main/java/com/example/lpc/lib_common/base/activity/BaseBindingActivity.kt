@@ -16,6 +16,8 @@ abstract class BaseBindingActivity<VB : ViewBinding> :AppCompatActivity(){
 
     val binding:VB get() = _binding!!
 
+    abstract fun  getViewBinding():VB
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding= getViewBinding().apply {
@@ -31,5 +33,5 @@ abstract class BaseBindingActivity<VB : ViewBinding> :AppCompatActivity(){
         super.onDestroy()
     }
 
-    abstract fun  getViewBinding():VB
+
 }

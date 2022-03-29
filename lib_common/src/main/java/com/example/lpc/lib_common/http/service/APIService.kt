@@ -27,7 +27,26 @@ interface APIService {
      * @Desc:登录：https://www.wanandroid.com/user/login
      */
     @POST("/user/login")
-    suspend fun login(@Query("username") username: String, @Query("password") password: String): Response<BaseVo<String>>
+    suspend fun login(
+        @Query("username") username: String,
+        @Query("password") password: String
+    ): Response<BaseVo<String>>
+
+
+    /**
+     *
+     * @param username String
+     * @param password String
+     * @param repassword String
+     * @return Response<BaseVo<String>>
+     * @Desc:注册：https://www.wanandroid.com/user/register
+     */
+    @POST("/user/register")
+    suspend fun register(
+        @Query("username") username: String,
+        @Query("password") password: String,
+        @Query("repassword") repassword: String
+    ): Response<BaseVo<String>>
 
     /**
      *
