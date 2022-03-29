@@ -28,6 +28,10 @@ class HomeRepository(var dataSource: HomeRemoteDataSource) :
         return dataSource.getBanner()
     }
 
+    suspend fun getTop(): Results<MutableList<Article>> {
+        return dataSource.getTop()
+    }
+
 }
 
 class HomeRemoteDataSource : IRemoteDataSource {
@@ -39,6 +43,11 @@ class HomeRemoteDataSource : IRemoteDataSource {
 
     suspend fun getBanner(): Results<MutableList<Banner>> {
         return processApiResponse { RetrofitHelper.apiService.getBanner() }
+    }
+
+    suspend fun getTop(): Results<MutableList<Article>> {
+
+        return processApiResponse { RetrofitHelper.apiService.getTopArticle() }
     }
 }
 

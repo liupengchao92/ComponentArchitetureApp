@@ -49,6 +49,15 @@ interface APIService {
         @Query("repassword") repassword: String
     ): Response<BaseVo<String>>
 
+
+    /**
+     *
+     * @return Response<BaseVo<MutableList<Banner>>>
+     * @Desc:首页轮播图：https://www.wanandroid.com/banner/json
+     */
+    @GET("/banner/json")
+    suspend fun getBanner(): Response<BaseVo<MutableList<Banner>>>
+
     /**
      *
      * @param page Int
@@ -58,13 +67,14 @@ interface APIService {
     @GET("/article/list/{page}/json")
     suspend fun getHomeArticle(@Path("page") page: Int): Response<BaseVo<PageVo<Article>>>
 
+
     /**
      *
-     * @return Response<BaseVo<MutableList<Banner>>>
-     * @Desc:首页轮播图：https://www.wanandroid.com/banner/json
+     * @return Response<BaseVo<MutableList<Article>>>
+     * @Desc:首页置顶文章：https://www.wanandroid.com/article/top/json
      */
-    @GET("/banner/json")
-    suspend fun getBanner(): Response<BaseVo<MutableList<Banner>>>
+    @GET("/article/top/json")
+    suspend fun getTopArticle(): Response<BaseVo<MutableList<Article>>>
 
 
 }

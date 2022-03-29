@@ -40,6 +40,8 @@ class ArticleAdapter(var datas: MutableList<Article>) :
         holder.setText(R.id.tv_date, stringBuilder.toString())
         //是否是最新的
         holder.setGone(R.id.tv_refresh, !item.fresh)
+        //是否置顶
+        holder.setGone(R.id.tv_top, item.type == 0)
     }
 
     override fun addData(newData: Collection<Article>) {

@@ -9,7 +9,10 @@ import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.lib_common.http.pojo.Banner
 import com.example.lpc.main_module.ui.repository.HomeRemoteDataSource
 import com.example.lpc.main_module.ui.repository.HomeRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * Author: liupengchao
@@ -35,14 +38,39 @@ class HomeViewModel : BaseViewModel() {
 
         viewModelScope.launch {
 
-            when (val result = repository.getArticle(page)) {
+            if (page == 0) {
 
-                is Results.Success -> {
-                    _articleLiveData.postValue(result.data.datas)
+                val articleList = withContext(Dispatchers.IO) {
+
+                    val list = mutableListOf<Article>()
+
+                    val topAsync = async { repository.getTop() }
+                    val articleAsync = async { repository.getArticle(page) }
+
+                    val topArticle = topAsync.await()
+                    val article = articleAsync.await()
+
+                    if (topArticle is Results.Success) {
+                        list.addAll(topArticle.data)
+                    }
+                    if (article is Results.Success) {
+                        list.addAll(article.data.datas!!)
+                    }
+                    list
                 }
 
-                is Results.Failure -> {
+                _articleLiveData.postValue(articleList)
 
+            } else {
+                when (val result = repository.getArticle(page)) {
+
+                    is Results.Success -> {
+                        _articleLiveData.postValue(result.data.datas)
+                    }
+
+                    is Results.Failure -> {
+
+                    }
                 }
             }
         }
@@ -64,5 +92,4 @@ class HomeViewModel : BaseViewModel() {
             }
         }
     }
-
 }
