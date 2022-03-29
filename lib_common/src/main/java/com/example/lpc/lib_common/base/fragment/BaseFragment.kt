@@ -47,7 +47,6 @@ abstract class BaseFragment() : Fragment() {
     ): View? {
         rootView = inflater.inflate(layoutResId, container, false)
 
-        LogUtils.e("onCreateView=====>>")
         return rootView
     }
 
@@ -59,7 +58,6 @@ abstract class BaseFragment() : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        LogUtils.e("onActivityCreated=====>>")
 
         onCreate()
 

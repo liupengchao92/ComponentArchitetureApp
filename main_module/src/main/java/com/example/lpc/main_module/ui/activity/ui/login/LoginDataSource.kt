@@ -4,6 +4,7 @@ import com.example.lpc.lib_common.base.repository.ILocalDataSource
 import com.example.lpc.lib_common.base.repository.IRemoteDataSource
 import com.example.lpc.lib_common.extension.processApiResponse
 import com.example.lpc.lib_common.http.Results
+import com.example.lpc.lib_common.http.pojo.LoginUserInfo
 import com.example.lpc.lib_common.http.retrofit.RetrofitHelper
 
 /**
@@ -20,7 +21,7 @@ class LoginRemoteDataSource : IRemoteDataSource {
      * @param password String
      * @return Results<String>
      */
-    suspend fun login(username: String, password: String): Results<String> {
+    suspend fun login(username: String, password: String): Results<LoginUserInfo> {
 
         return try {
 

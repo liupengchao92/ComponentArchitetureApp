@@ -8,18 +8,23 @@ import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.ToastUtils
 import com.example.lpc.lib_common.base.activity.BaseBindingActivity
 import com.example.lpc.lib_common.constant.ARouterConstant
+import com.example.lpc.lib_common.constant.MMKVConstant
+import com.example.lpc.lib_common.http.pojo.LoginUserInfo
+import com.example.lpc.lib_common.utils.MMKVUtils
 import com.example.lpc.main_module.R
 import com.example.lpc.main_module.databinding.ActivityLoginBinding
 import com.example.lpc.main_module.ui.activity.MainActivity
 import com.example.lpc.main_module.ui.activity.ui.register.RegisterActivity
 
+/**
+ * 登录页面
+ */
 @Route(path = ARouterConstant.Main.LOGIN_PATH)
 class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
 
@@ -54,6 +59,13 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
             }
             //登录成功
             if (loginResult.success != null) {
+
+                var loginUserInfo = loginResult.success
+
+                //保存用户名和密码
+                MMKVUtils.putValue(MMKVConstant.USER_NAME, binding.usernameEt.text.toString())
+                MMKVUtils.putValue(MMKVConstant.PASSWORD, binding.passwordEt.text.toString())
+
                 updateUiWithUser(loginResult.success)
                 setResult(Activity.RESULT_OK)
                 //Complete and destroy login activity once successful
@@ -102,15 +114,10 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
         }
     }
 
-    private fun updateUiWithUser(model: LoggedInUserView) {
+    private fun updateUiWithUser(model: LoginUserInfo) {
         val welcome = getString(R.string.welcome)
-        val displayName = model.displayName
-        // TODO : initiate successful logged in experience
-        Toast.makeText(
-            applicationContext,
-            "$welcome $displayName",
-            Toast.LENGTH_LONG
-        ).show()
+        val displayName = model.username
+        ToastUtils.showShort("$welcome $displayName")
     }
 
     private fun showLoginFailed(errorString: String) {

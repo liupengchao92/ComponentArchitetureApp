@@ -127,7 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:hint="@string/prompt_username"
-            android:maxLength="8"
+            android:maxLength="16"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:textSize="16dp"

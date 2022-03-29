@@ -9,14 +9,18 @@ package com.example.lpc.lib_common.constant
 object CommonConstant {
 
 
-    object MainFrameworkPage{
+    object MainFrameworkPage {
         //主页
         const val HOME = "home"
+
         //导航
-        const val NAVIGATION="navigation"
+        const val NAVIGATION = "navigation"
+
         //问答
-        const val QUESTION="question"
+        const val QUESTION = "question"
+
         //个人
-        const val PROFILE="profile"
+        const val PROFILE = "profile"
     }
+
 }

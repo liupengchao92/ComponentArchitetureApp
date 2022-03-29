@@ -6,8 +6,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.blankj.utilcode.util.ActivityUtils
+import com.example.lpc.lib_common.constant.MMKVConstant
 import com.example.lpc.lib_common.http.Errors
 import com.example.lpc.lib_common.http.Results
+import com.example.lpc.lib_common.utils.MMKVUtils
 import com.example.lpc.main_module.R
 import kotlinx.coroutines.launch
 
@@ -28,14 +30,19 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
             if (result is Results.Success) {
                 _loginResult.value =
-                    LoginResult(success = LoggedInUserView(displayName = result.data))
+                    LoginResult(success =  result.data)
+
             } else {
-                val error: Errors = (result as Results.Failure).throwable as Errors
 
-                if (error is Errors.NetWorException) {
+                if ((result as Results.Failure).throwable is Errors) {
 
-                    _loginResult.value = LoginResult(error = error.errorMsg)
+                    val error: Errors = (result as Results.Failure).throwable as Errors
 
+                    if (error is Errors.NetWorException) {
+
+                        _loginResult.value = LoginResult(error = error.errorMsg)
+
+                    }
                 } else {
                     _loginResult.value = LoginResult(
                         error = ActivityUtils.getTopActivity().getString(R.string.login_failed)
@@ -66,6 +73,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        return password.length > 5
+        return password.isNotEmpty() && password.length > 5
     }
 }

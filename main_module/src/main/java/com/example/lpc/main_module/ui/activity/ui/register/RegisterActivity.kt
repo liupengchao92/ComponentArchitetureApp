@@ -79,7 +79,7 @@ class RegisterActivity : BaseBindingActivity<ActivityRegisterBinding>() {
 
         //注册
         binding.registerBtn.setOnClickListener {
-            
+
             binding.loading.visibility = View.VISIBLE
 
             viewModel.register(

@@ -3,6 +3,7 @@ package com.example.lpc.lib_common.http.service
 import com.example.lpc.lib_common.http.BaseVo
 import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.lib_common.http.pojo.Banner
+import com.example.lpc.lib_common.http.pojo.LoginUserInfo
 import com.example.lpc.lib_common.http.pojo.PageVo
 import retrofit2.Response
 import retrofit2.http.GET
@@ -30,7 +31,7 @@ interface APIService {
     suspend fun login(
         @Query("username") username: String,
         @Query("password") password: String
-    ): Response<BaseVo<String>>
+    ): Response<BaseVo<LoginUserInfo>>
 
 
     /**

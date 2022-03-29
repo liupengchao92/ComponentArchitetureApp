@@ -13,6 +13,7 @@ import com.scwang.smart.refresh.layout.api.RefreshHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.DefaultRefreshFooterCreator
 import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator
+import com.tencent.mmkv.MMKV
 
 /**
  * Author: liupengchao
@@ -50,5 +51,16 @@ class SmartRefreshLayoutInitTask : IInitTask {
 
         LogUtils.d("初始化:SmartRefreshLayout===============>>")
     }
+}
 
+//MMKV
+@InitTask(name = "MMKVInitTask", background = false)
+class MMKVInitTask() : IInitTask {
+
+    override fun execute(application: Application) {
+
+        var rootDir = MMKV.initialize(application)
+
+        LogUtils.d("初始化:MMKV===============>>${rootDir}")
+    }
 }
