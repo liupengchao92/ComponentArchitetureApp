@@ -1,10 +1,7 @@
 package com.example.lpc.lib_common.http.service
 
 import com.example.lpc.lib_common.http.BaseVo
-import com.example.lpc.lib_common.http.pojo.Article
-import com.example.lpc.lib_common.http.pojo.Banner
-import com.example.lpc.lib_common.http.pojo.LoginUserInfo
-import com.example.lpc.lib_common.http.pojo.PageVo
+import com.example.lpc.lib_common.http.pojo.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -75,6 +72,14 @@ interface APIService {
      */
     @GET("/article/top/json")
     suspend fun getTopArticle(): Response<BaseVo<MutableList<Article>>>
+
+    /**
+     *
+     * @return Response<BaseVo<HotKey>>
+     * @Desc :搜索热词：https://www.wanandroid.com//hotkey/json
+     */
+    @GET("/hotkey/json")
+    suspend fun getSearchHotKey(): Response<BaseVo<MutableList<HotKey>>>
 
 
 }

@@ -1,9 +1,14 @@
 package com.example.lpc.main_module.ui.fragment
 
+import android.view.Gravity
+import android.widget.FrameLayout
+import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.blankj.utilcode.util.SizeUtils
 import com.example.lpc.lib_common.base.fragment.BaseFragment
 import com.example.lpc.main_module.R
 import com.example.lpc.main_module.databinding.LayoutHomeBannerBinding
@@ -73,18 +78,42 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun onLoadData() {
+        //获取搜索热词
+        viewModel.getSearchHotKey()
         //获取轮播图
         viewModel.getBanner()
         //获取文章
         viewModel.getArticle(0)
 
-        //
+
+        viewModel.hotKeyData.observe(this) { hotKeyList ->
+            var text: TextView
+            var params: FrameLayout.LayoutParams
+
+            hotKeyList.forEach {
+                text = TextView(requireContext())
+                text.text = it.name
+                text.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+
+                params = FrameLayout.LayoutParams(
+                    FrameLayout.LayoutParams.WRAP_CONTENT,
+                    FrameLayout.LayoutParams.WRAP_CONTENT
+                )
+                params.gravity = Gravity.CENTER_VERTICAL
+                params.leftMargin = SizeUtils.dp2px(10f)
+
+                viewFlipper.addView(text, params)
+            }
+
+            viewFlipper.startFlipping()
+        }
+
         viewModel.bannerLiveData.observe(this, Observer {
 
             bannerAdapter.setDatas(it)
 
         })
-        //
+
         viewModel.articleLiveData.observe(this, Observer {
             if (isRefresh) {
                 adapter.setNewInstance(it)

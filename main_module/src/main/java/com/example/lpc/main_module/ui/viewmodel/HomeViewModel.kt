@@ -7,6 +7,7 @@ import com.example.lpc.lib_common.base.viewmodel.BaseViewModel
 import com.example.lpc.lib_common.http.Results
 import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.lib_common.http.pojo.Banner
+import com.example.lpc.lib_common.http.pojo.HotKey
 import com.example.lpc.main_module.ui.repository.HomeRemoteDataSource
 import com.example.lpc.main_module.ui.repository.HomeRepository
 import kotlinx.coroutines.Dispatchers
@@ -27,13 +28,19 @@ class HomeViewModel : BaseViewModel() {
     private val repository: HomeRepository by lazy { HomeRepository(dataSource) }
 
     private val _articleLiveData = MutableLiveData<MutableList<Article>>()
-
     val articleLiveData: LiveData<MutableList<Article>> = _articleLiveData
 
     private val _bannerLiveData = MutableLiveData<MutableList<Banner>>()
+    val bannerLiveData: LiveData<MutableList<Banner>> = _bannerLiveData
 
-    val bannerLiveData: LiveData<MutableList<Banner>> = _bannerLiveData;
+    private val _hotKeyData = MutableLiveData<MutableList<HotKey>>()
+    val hotKeyData: LiveData<MutableList<HotKey>> = _hotKeyData
 
+
+    /**
+     * 获取文章
+     * @param page Int
+     */
     fun getArticle(page: Int = 0) {
 
         viewModelScope.launch {
@@ -76,6 +83,9 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
+    /**
+     * 获取轮播图
+     */
     fun getBanner() {
 
         viewModelScope.launch {
@@ -84,6 +94,27 @@ class HomeViewModel : BaseViewModel() {
 
                 is Results.Success -> {
                     _bannerLiveData.postValue(result.data!!)
+                }
+
+                is Results.Failure -> {
+
+                }
+            }
+        }
+    }
+
+    /**
+     *
+     * 获取搜索热词
+     */
+    fun getSearchHotKey() {
+
+        viewModelScope.launch {
+
+            when (val result = repository.getSearchHotKey()) {
+
+                is Results.Success -> {
+                    _hotKeyData.postValue(result.data!!)
                 }
 
                 is Results.Failure -> {
