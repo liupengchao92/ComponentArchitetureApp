@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">main_module</string>
+    <string name="app_name">module_main</string>
     <string name="home">首页</string>
     <string name="question">问答</string>
     <string name="navigation">导航</string>

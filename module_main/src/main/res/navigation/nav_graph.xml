@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_main"
-        android:name="com.example.lpc.main_module.ui.fragment.MainFragment"
+        android:name="com.example.lpc.module_main.ui.fragment.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main" />
 

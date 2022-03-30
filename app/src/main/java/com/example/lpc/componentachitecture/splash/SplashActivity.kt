@@ -9,8 +9,8 @@ import com.example.lpc.lib_common.base.activity.BaseActivity
 import com.example.lpc.lib_common.constant.ARouterConstant
 import com.example.lpc.lib_common.constant.MMKVConstant
 import com.example.lpc.lib_common.utils.MMKVUtils
-import com.example.lpc.main_module.ui.activity.ui.login.LoginViewModel
-import com.example.lpc.main_module.ui.activity.ui.login.LoginViewModelFactory
+import com.example.lpc.module_main.ui.activity.ui.login.LoginViewModel
+import com.example.lpc.module_main.ui.activity.ui.login.LoginViewModelFactory
 import kotlinx.android.synthetic.main.activity_splash.*
 
 @Route(path = ARouterConstant.App.SPLASH_PATH)
