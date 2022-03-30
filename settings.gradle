@@ -18,7 +18,7 @@ dependencyResolutionManagement {
 rootProject.name = "ComponentAchitecture"
 include ':app'
 include ':lib_common'
-include ':main_module'
+include ':module_main'
 include ':compile'
 include ':annotation'
-include ':li_init_api'
+include ':lib_init_api'
