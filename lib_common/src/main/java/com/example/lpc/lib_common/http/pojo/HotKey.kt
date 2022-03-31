@@ -1,5 +1,7 @@
 package com.example.lpc.lib_common.http.pojo
 
+import java.io.Serializable
+
 /**
  * Author: liupengchao
  * Date: 2022/3/30
@@ -17,4 +19,4 @@ data class HotKey(
     val order: Int,
 
     val visible: Int
-)
+):Serializable

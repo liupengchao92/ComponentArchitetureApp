@@ -60,7 +60,8 @@ dependencies {
     implementation project(path: ':lib_common')
     annotationProcessor 'com.alibaba:arouter-compiler:1.5.2'
 
-    if (Boolean.parseBoolean(isRelease)){
+    if (Boolean.parseBoolean(isRelease)) {
         implementation project(path: ':module_main')
+        implementation project(path: ':module_home')
     }
 }

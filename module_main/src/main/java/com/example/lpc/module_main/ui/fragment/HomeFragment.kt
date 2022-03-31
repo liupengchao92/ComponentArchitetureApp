@@ -8,8 +8,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.SizeUtils
 import com.example.lpc.lib_common.base.fragment.BaseFragment
+import com.example.lpc.lib_common.constant.ARouterConstant
+import com.example.lpc.lib_common.constant.ParamsKeyConstant.CURRENT_HOT_KEY
+import com.example.lpc.lib_common.constant.ParamsKeyConstant.HOT_KEY_LIST
+import com.example.lpc.lib_common.http.pojo.HotKey
 import com.example.lpc.module_main.R
 import com.example.lpc.module_main.databinding.LayoutHomeBannerBinding
 import com.example.lpc.module_main.ui.adapter.ArticleAdapter
@@ -20,6 +25,7 @@ import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.transformer.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.util.*
 
 /**
  * Author: liupengchao
@@ -40,6 +46,8 @@ class HomeFragment : BaseFragment() {
     override var layoutResId: Int = R.layout.fragment_home
 
     private var isRefresh: Boolean = false;
+
+    private var hotKeyList = mutableListOf<HotKey>()
 
 
     override fun onCreate() {
@@ -73,7 +81,17 @@ class HomeFragment : BaseFragment() {
             setPageTransformer(AlphaPageTransformer())
             //生命周期的添加
             addBannerLifecycleObserver(this@HomeFragment)
+        }
 
+        //跳转到搜索页面
+        viewFlipper.setOnClickListener {
+            var currentKey = (viewFlipper.currentView as TextView).text.toString()
+
+            ARouter.getInstance()
+                .build(ARouterConstant.Home.SEARCH_PATH)
+                .withString(CURRENT_HOT_KEY, currentKey)
+                .withSerializable(HOT_KEY_LIST, hotKeyList as ArrayList<HotKey>)
+                .navigation()
         }
     }
 
@@ -87,9 +105,10 @@ class HomeFragment : BaseFragment() {
 
 
         viewModel.hotKeyData.observe(this) { hotKeyList ->
+            this.hotKeyList = hotKeyList
+
             var text: TextView
             var params: FrameLayout.LayoutParams
-
             hotKeyList.forEach {
                 text = TextView(requireContext())
                 text.text = it.name
@@ -103,6 +122,7 @@ class HomeFragment : BaseFragment() {
                 params.leftMargin = SizeUtils.dp2px(10f)
 
                 viewFlipper.addView(text, params)
+
             }
 
             viewFlipper.startFlipping()

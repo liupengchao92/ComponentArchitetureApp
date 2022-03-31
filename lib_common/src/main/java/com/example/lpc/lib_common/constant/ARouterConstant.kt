@@ -8,22 +8,29 @@ package com.example.lpc.lib_common.constant
  */
 object ARouterConstant {
 
+    object App {
+
+        private const val APP = "/app"
+
+        const val SPLASH_PATH = "$APP/splash"
+
+    }
+
     object Main {
 
         private const val MAIN = "/main"
 
-        const val INDEX_PATH = "/main/index"
+        const val INDEX_PATH = "${MAIN}/index"
 
-        const val SECOND_PATH = "/main/second"
+        const val SECOND_PATH = "${MAIN}/second"
 
-        const val LOGIN_PATH = "/login/second"
+        const val LOGIN_PATH = "${MAIN}/login"
     }
 
-    object App{
+    object Home {
 
-        private const val APP="/app"
+        private const val HOME = "/home"
 
-        const val SPLASH_PATH="$APP/splash"
-
+        const val SEARCH_PATH = "${HOME}/search"
     }
 }
