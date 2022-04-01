@@ -1,21 +1,24 @@
-package com.example.lpc.module_home
+package com.example.lpc.module_home.ui.search
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.LogUtils
-import com.blankj.utilcode.util.ToastUtils
 import com.example.lpc.lib_common.base.activity.BaseBindingActivity
 import com.example.lpc.lib_common.constant.ARouterConstant
 import com.example.lpc.lib_common.constant.ParamsKeyConstant
 import com.example.lpc.lib_common.http.pojo.HotKey
+import com.example.lpc.module_home.R
 import com.example.lpc.module_home.databinding.ActivitySearchBinding
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
@@ -27,6 +30,10 @@ import kotlinx.android.synthetic.main.activity_search.*
  */
 @Route(path = ARouterConstant.Home.SEARCH_PATH)
 class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
+
+    private val viewModel: SearchViewModel by viewModels { SearchViewModelFactory() }
+
+    private val articleAdapter = ArticleAdapter(mutableListOf())
 
     @JvmField
     @Autowired(name = ParamsKeyConstant.CURRENT_HOT_KEY)
@@ -44,14 +51,35 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this)
-        
+
         searchEdit.setText(hotKey)
+
+
+        viewModel.resultData.observe(this) {
+            contentLayout.visibility = View.VISIBLE
+            if (it.datas.isNullOrEmpty()) {
+                recyclerView.visibility = View.GONE
+                emptyView.visibility = View.VISIBLE
+            } else {
+                emptyView.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+
+                articleAdapter.setNewInstance(it.datas)
+            }
+        }
+
+        recyclerView.run {
+
+            layoutManager = LinearLayoutManager(context)
+
+            adapter = articleAdapter
+        }
 
         flowLayout.adapter = hotKeyList?.let { HotKeyAdapter(it) }
 
-        flowLayout.setOnTagClickListener(object :TagFlowLayout.OnTagClickListener{
+        flowLayout.setOnTagClickListener(object : TagFlowLayout.OnTagClickListener {
             override fun onTagClick(view: View?, position: Int, parent: FlowLayout?): Boolean {
-                ToastUtils.showShort(hotKeyList?.get(position)?.name)
+                viewModel.search(0, hotKeyList?.get(position)?.name!!)
                 return true
             }
         })
@@ -59,15 +87,28 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
         searchEdit.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    ToastUtils.showShort("开始搜索");
+                    viewModel.search(0, searchEdit.text.toString())
                     return true;
                 }
                 return false
             }
         })
 
+        searchEdit.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                contentLayout.visibility = View.GONE
+            }
+        })
+
         clearIv.setOnClickListener {
             searchEdit.setText("")
+            contentLayout.visibility = View.GONE
         }
         //关掉当前页面
         cancelTv.setOnClickListener {

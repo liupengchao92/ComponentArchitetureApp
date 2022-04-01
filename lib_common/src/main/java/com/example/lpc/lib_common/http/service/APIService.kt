@@ -81,5 +81,15 @@ interface APIService {
     @GET("/hotkey/json")
     suspend fun getSearchHotKey(): Response<BaseVo<MutableList<HotKey>>>
 
+    /**
+     * @return Response<BaseVo<PageVo<Article>>>
+     * @Desc:文章搜索：https://www.wanandroid.com/article/query/0/json
+     */
+    @POST("/article/query/{page}/json")
+    suspend fun getSearchArticle(
+        @Path("page") page: Int,
+        @Query("k") keyword: String
+    ): Response<BaseVo<PageVo<Article>>>
+
 
 }
