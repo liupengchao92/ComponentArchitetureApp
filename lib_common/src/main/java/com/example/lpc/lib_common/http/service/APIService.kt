@@ -1,6 +1,7 @@
 package com.example.lpc.lib_common.http.service
 
 import com.example.lpc.lib_common.http.BaseVo
+import com.example.lpc.lib_common.http.Results
 import com.example.lpc.lib_common.http.pojo.*
 import retrofit2.Response
 import retrofit2.http.GET
@@ -46,6 +47,13 @@ interface APIService {
         @Query("repassword") repassword: String
     ): Response<BaseVo<String>>
 
+    /**
+     * @return Response<BaseVo<Any>>
+     * @Desc:退出登录：https://www.wanandroid.com/user/logout/json
+     */
+    @GET("/user/logout/json")
+    suspend fun logout(): Response<BaseVo<Any>>
+
 
     /**
      *
@@ -90,6 +98,14 @@ interface APIService {
         @Path("page") page: Int,
         @Query("k") keyword: String
     ): Response<BaseVo<PageVo<Article>>>
+
+
+    /**
+     * @return Results<BaseVo<PersonalInfo>>
+     * @Desc:个人信息：https://wanandroid.com//user/lg/userinfo/json
+     */
+    @GET("/user/lg/userinfo/json")
+    suspend fun getUserInfo():Response<BaseVo<PersonalInfo>>
 
 
 }

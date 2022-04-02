@@ -1,5 +1,6 @@
 package com.example.lpc.lib_common.extension
 
+import com.blankj.utilcode.util.LogUtils
 import com.example.lpc.lib_common.http.BaseVo
 import com.example.lpc.lib_common.http.Errors
 import com.example.lpc.lib_common.http.Results
@@ -48,7 +49,7 @@ inline fun <T> processApiResponse(response: () -> Response<BaseVo<T>>): Results<
             }
         }
     } catch (e: Throwable) {
-
+        LogUtils.e("请求接口失败：" + e.message)
         return Results.failure(e)
 
     }

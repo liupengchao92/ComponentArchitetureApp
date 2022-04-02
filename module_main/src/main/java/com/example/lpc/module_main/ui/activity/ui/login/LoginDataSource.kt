@@ -35,8 +35,8 @@ class LoginRemoteDataSource : IRemoteDataSource {
     /**
      * 退出登录
      */
-    suspend fun logout() {
-
+    suspend fun logout(): Results<Any> {
+        return processApiResponse { RetrofitHelper.apiService.logout() }
     }
 }
 
