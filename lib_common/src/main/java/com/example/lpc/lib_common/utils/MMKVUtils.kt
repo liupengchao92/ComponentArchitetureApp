@@ -56,6 +56,11 @@ object MMKVUtils {
 
                 mmkv.encode(key, value)
             }
+
+            is Set<*> -> {
+
+                mmkv.encode(key, value as Set<String>)
+            }
         }
     }
 
@@ -86,6 +91,10 @@ object MMKVUtils {
 
     fun getByte(key: String, default: ByteArray = byteArrayOf()): ByteArray {
         return mmkv.decodeBytes(key, default)!!
+    }
+
+    fun getSetString(key: String,default: Set<String> = mutableSetOf()): MutableSet<String>? {
+        return mmkv.decodeStringSet(key,default)
     }
 
     fun remove(key: String) {

@@ -13,4 +13,7 @@ object MMKVConstant {
 
     //密码
     const val PASSWORD = "password"
+
+    //Cookie
+    const val COOKIE = "COOKIE"
 }

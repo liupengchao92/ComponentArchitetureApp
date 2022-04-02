@@ -12,8 +12,16 @@ import com.example.lpc.api.AppInitManager
  */
 open class BaseApplication() : Application() {
 
+
+    companion object {
+
+        lateinit var INSTANCE: Application
+
+    }
+
     override fun onCreate() {
         super.onCreate()
+        INSTANCE = this
         //初始化路由
         ARouter.init(this)
         ARouter.openLog()
