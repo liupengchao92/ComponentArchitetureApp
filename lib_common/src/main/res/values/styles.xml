@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--通用分割线-->
+    <style name="CommonLineStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/color_e5e5e5</item>
+    </style>
+    <!--通用分割线-->
+    <style name="CommonLineStyle2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1px</item>
+        <item name="android:background">@color/lightgray</item>
+    </style>
+</resources>
