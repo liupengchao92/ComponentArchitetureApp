@@ -1,9 +1,13 @@
 package com.example.lpc.module_main.ui.fragment
 
+import android.app.StatusBarManager
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.ColorUtils
+import com.blankj.utilcode.util.SizeUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.example.lpc.lib_common.base.fragment.BaseFragment
 import com.example.lpc.module_main.R
@@ -32,7 +36,6 @@ class ProfileFragment : BaseFragment(),View.OnClickListener {
 
 
     override fun onCreate() {
-
         viewModel.userInfoData.observe(this) {
 
             userNameTv.text = it.userInfo.username

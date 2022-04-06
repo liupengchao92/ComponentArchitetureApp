@@ -2,6 +2,8 @@ package com.example.lpc.module_main.ui.fragment
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.ColorUtils
 import com.example.lpc.lib_common.base.fragment.BaseBindingFragment
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.HOME
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.NAVIGATION
@@ -10,6 +12,7 @@ import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.QUES
 import com.example.lpc.module_main.R
 import com.example.lpc.module_main.databinding.FragmentMainBinding
 import com.google.android.material.navigation.NavigationBarView
+import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
  * Author: liupengchao
@@ -27,10 +30,11 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
     }
 
     override fun onCreate() {
+        BarUtils.addMarginTopEqualStatusBarHeight(statusBarView)
         //默认选中第一个
         setCurrentPage(HOME)
         //添加监听
-         binding.bottomNavigationView.setOnItemSelectedListener(onItemClickListener)
+        binding.bottomNavigationView.setOnItemSelectedListener(onItemClickListener)
 
     }
 
@@ -40,23 +44,23 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
     }
 
     private val onItemClickListener = NavigationBarView.OnItemSelectedListener { item ->
-            when (item.itemId) {
+        when (item.itemId) {
 
-                R.id.navi_home -> {
-                    setCurrentPage(HOME)
-                }
-                R.id.navi_navigation -> {
-                    setCurrentPage(NAVIGATION)
-                }
-                R.id.navi_question -> {
-                    setCurrentPage(QUESTION)
-                }
-                R.id.navi_profile -> {
-                    setCurrentPage(PROFILE)
-                }
+            R.id.navi_home -> {
+                setCurrentPage(HOME)
             }
-            true
+            R.id.navi_navigation -> {
+                setCurrentPage(NAVIGATION)
+            }
+            R.id.navi_question -> {
+                setCurrentPage(QUESTION)
+            }
+            R.id.navi_profile -> {
+                setCurrentPage(PROFILE)
+            }
         }
+        true
+    }
 
 
     private fun setCurrentPage(page: String) {
@@ -70,62 +74,72 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
                 beginTransaction.hide(fragment)
             }
 
-            when(page){
-                HOME ->{
+            when (page) {
+                HOME -> {
                     var homeFragment = it.findFragmentByTag(page)
 
-                    if (homeFragment == null){
+                    if (homeFragment == null) {
 
                         homeFragment = HomeFragment()
 
-                        beginTransaction.add(R.id.contentContainer,homeFragment,page)
+                        beginTransaction.add(R.id.contentContainer, homeFragment, page)
 
-                    }else{
+                    } else {
                         beginTransaction.show(homeFragment)
                     }
+                    BarUtils.setStatusBarColor(
+                        requireActivity(),
+                        ColorUtils.getColor(R.color.colorPrimary)
+                    )
+                    BarUtils.setStatusBarLightMode(requireActivity(), false)
                 }
 
-                NAVIGATION ->{
+                NAVIGATION -> {
                     var navigationFragment = it.findFragmentByTag(page)
 
-                    if (navigationFragment == null){
+                    if (navigationFragment == null) {
 
                         navigationFragment = NavigationFragment()
 
-                        beginTransaction.add(R.id.contentContainer,navigationFragment,page)
+                        beginTransaction.add(R.id.contentContainer, navigationFragment, page)
 
-                    }else{
+                    } else {
                         beginTransaction.show(navigationFragment)
                     }
                 }
 
-                QUESTION ->{
+                QUESTION -> {
                     var questionFragment = it.findFragmentByTag(page)
 
-                    if (questionFragment == null){
+                    if (questionFragment == null) {
 
                         questionFragment = QuestionFragment()
 
-                        beginTransaction.add(R.id.contentContainer,questionFragment,page)
+                        beginTransaction.add(R.id.contentContainer, questionFragment, page)
 
-                    }else{
+                    } else {
                         beginTransaction.show(questionFragment)
                     }
                 }
 
-                PROFILE ->{
+                PROFILE -> {
                     var profileFragment = it.findFragmentByTag(page)
 
-                    if (profileFragment == null){
+                    if (profileFragment == null) {
 
                         profileFragment = ProfileFragment()
 
-                        beginTransaction.add(R.id.contentContainer,profileFragment,page)
+                        beginTransaction.add(R.id.contentContainer, profileFragment, page)
 
-                    }else{
+                    } else {
                         beginTransaction.show(profileFragment)
                     }
 
+                    BarUtils.setStatusBarColor(
+                        requireActivity(),
+                        ColorUtils.getColor(R.color.white)
+                    )
+                    BarUtils.setStatusBarLightMode(requireActivity(), true)
                 }
             }
             //提交事务
