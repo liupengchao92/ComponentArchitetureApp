@@ -1,10 +1,16 @@
 package com.example.lpc.module_main.ui.adapter
 
+import android.content.Intent
 import android.text.TextUtils
+import android.view.View
+import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.AppUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.example.lpc.lib_common.constant.ParamsKeyConstant
 import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.module_main.R
+import com.example.lpc.module_main.ui.activity.ui.web.CommonWebActivity
 
 /**
  * Author: liupengchao
@@ -42,6 +48,13 @@ class ArticleAdapter(var datas: MutableList<Article>) :
         holder.setGone(R.id.tv_refresh, !item.fresh)
         //是否置顶
         holder.setGone(R.id.tv_top, item.type == 0)
+
+        //点击事件
+        holder.getView<View>(R.id.itemView).setOnClickListener {
+            val intent = Intent(ActivityUtils.getTopActivity(), CommonWebActivity::class.java)
+            intent.putExtra(ParamsKeyConstant.ARTICLE, item)
+            ActivityUtils.getTopActivity().startActivity(intent)
+        }
     }
 
     override fun addData(newData: Collection<Article>) {

@@ -12,4 +12,6 @@ object ParamsKeyConstant {
 
     const val HOT_KEY_LIST = "hot_key_list"
 
+    const val ARTICLE = "article"
+
 }

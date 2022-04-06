@@ -3,6 +3,7 @@
     package="com.example.lpc.module_main">
 
     <application>
+
         <activity android:name=".ui.activity.MainActivity" />
         <activity android:name=".ui.activity.SecondActivity" />
         <activity
@@ -11,6 +12,10 @@
         <activity
             android:name=".ui.activity.ui.register.RegisterActivity"
             android:theme="@style/LoginTheme" />
+
+        <activity
+            android:name=".ui.activity.ui.web.CommonWebActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

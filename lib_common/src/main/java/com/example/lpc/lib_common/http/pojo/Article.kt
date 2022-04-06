@@ -1,12 +1,14 @@
 package com.example.lpc.lib_common.http.pojo
 
+import java.io.Serializable
+
 /**
  * Author: liupengchao
  * Date: 2022/3/21
  * ClassName :Article
  * Desc:文章实体
  */
-class Article {
+class Article :Serializable {
 
     var apkLink: String? = null
 
@@ -73,5 +75,4 @@ class Article {
     var visible = 0
 
     var zan = 0
-
 }

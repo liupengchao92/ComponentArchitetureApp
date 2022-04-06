@@ -14,6 +14,8 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.DefaultRefreshFooterCreator
 import com.scwang.smart.refresh.layout.listener.DefaultRefreshHeaderCreator
 import com.tencent.mmkv.MMKV
+import com.tencent.smtt.export.external.TbsCoreSettings
+import com.tencent.smtt.sdk.QbSdk
 
 /**
  * Author: liupengchao
@@ -55,12 +57,38 @@ class SmartRefreshLayoutInitTask : IInitTask {
 
 //MMKV
 @InitTask(name = "MMKVInitTask", background = false)
-class MMKVInitTask() : IInitTask {
+class MMKVInitTask : IInitTask {
 
     override fun execute(application: Application) {
 
         var rootDir = MMKV.initialize(application)
 
         LogUtils.d("初始化:MMKV===============>>${rootDir}")
+    }
+}
+
+@InitTask(name = "QbSdkInitTask")
+class QbSdkInitTask : IInitTask {
+
+    override fun execute(application: Application) {
+
+        QbSdk.initX5Environment(application, object : QbSdk.PreInitCallback {
+            override fun onCoreInitFinished() {
+                LogUtils.d("初始化:QbSdk===============>>onCoreInitFinished")
+
+            }
+
+            override fun onViewInitFinished(p0: Boolean) {
+                LogUtils.d("初始化:QbSdk===============>>onViewInitFinished:${p0}")
+
+            }
+        })
+        //（可选）为了提高内核占比，在初始化前可配置允许移动网络下载内核（大小 40-50 MB）。默认移动网络不下载
+        QbSdk.setDownloadWithoutWifi(true);
+        //设置开启优化方案
+        val map = HashMap<String, Boolean>()
+        map[TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER] = true
+        map[TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE] = true
+        QbSdk.initTbsSettings(map as Map<String, Any>?);
     }
 }
