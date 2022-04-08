@@ -12,25 +12,15 @@ import java.lang.reflect.InvocationTargetException
  */
 object FinalTaskRegister {
 
-    fun register(): MutableList<TaskInfo> {
-        var taskList = mutableListOf<TaskInfo>()
-        try {
-            val taskRegister = Class.forName("com.example.lpc.register.TaskRegister")
-            var newInstance: ModuleTaskRegister = taskRegister.newInstance() as ModuleTaskRegister
+    val taskList: MutableList<TaskInfo> = mutableListOf()
 
-            newInstance.register(taskList)
-        } catch (e: ClassNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IllegalAccessException) {
-            e.printStackTrace()
-        } catch (e: InstantiationException) {
-            e.printStackTrace()
-        } catch (e: NoSuchMethodException) {
-            e.printStackTrace()
-        } catch (e: InvocationTargetException) {
-            e.printStackTrace()
-        }
+    init {
+        init()
+    }
 
-        return taskList;
+    private fun init() {}
+
+    fun register(register: ModuleTaskRegister) {
+        register.register(taskList)
     }
 }

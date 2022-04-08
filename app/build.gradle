@@ -2,6 +2,8 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'auto-register'
+
 }
 
 android {
@@ -64,4 +66,20 @@ dependencies {
         implementation project(path: ':module_main')
         implementation project(path: ':module_home')
     }
+}
+
+autoregister {
+    registerInfo = [
+            [
+                    'scanInterface'            : 'com.example.lpc.annotation.ModuleTaskRegister',
+                    'codeInsertToClassName'    : 'com.example.lpc.api.FinalTaskRegister',
+                    //未指定codeInsertToMethodName，默认插入到static块中，故此处register必须为static方法
+                    'codeInsertToMethodName': 'init',
+                    'registerMethodName'       : 'register',
+                    'include'                  : [
+
+                            'com/example/lpc/register/.*' //排除这个基类
+                    ]
+            ]
+    ]
 }

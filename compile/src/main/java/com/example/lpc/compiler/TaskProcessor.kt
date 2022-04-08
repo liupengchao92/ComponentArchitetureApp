@@ -115,7 +115,7 @@ class TaskProcessor : AbstractProcessor() {
             /**
              * Write to file
              */
-            FileSpec.builder(ProcessorUtils.PACKAGE_NAME, "TaskRegister")
+            FileSpec.builder(ProcessorUtils.PACKAGE_NAME, "TaskRegister$$moduleName")
                 .addType(
                     TypeSpec.classBuilder("TaskRegister")
                         .addKdoc(ProcessorUtils.JAVADOC)

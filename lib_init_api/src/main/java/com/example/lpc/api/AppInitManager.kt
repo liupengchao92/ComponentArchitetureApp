@@ -23,7 +23,7 @@ class AppInitManager private constructor(private val app: Application, val proce
      */
     fun start() {
 
-        var register = FinalTaskRegister.register()
+        var register = FinalTaskRegister.taskList
         Log.e("AppInitManager", "start: ${register.size}")
         register.forEach {
 
