@@ -3,6 +3,7 @@ package com.example.lpc.module_main.ui.activity.ui.web
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.MenuItem
 import android.view.View
 import com.example.lpc.lib_common.base.activity.BaseActivity
 import com.example.lpc.lib_common.constant.ParamsKeyConstant
@@ -31,7 +32,9 @@ class CommonWebActivity : BaseActivity() {
         toolBar.run {
             title = article.title
             setSupportActionBar(this)
-            supportActionBar?.setHomeButtonEnabled(true)
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+            setNavigationIcon(R.drawable.ic_back)
 
         }
 
@@ -82,6 +85,15 @@ class CommonWebActivity : BaseActivity() {
             return true
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        if (item.itemId == android.R.id.home) {
+            finish()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     inner class CustomWebViewClient : WebViewClient() {
