@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.lpc.lib_common.database.entity.KeyWord
 import com.example.lpc.lib_common.http.Results
 import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.lib_common.http.pojo.PageVo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
@@ -20,9 +22,12 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
     private val _resultData = MutableLiveData<PageVo<Article>>()
     val resultData: LiveData<PageVo<Article>> = _resultData
 
+    private val _keywordData = MutableLiveData<MutableList<KeyWord>>()
+    val keywordData: LiveData<MutableList<KeyWord>> = _keywordData
+
     fun search(page: Int = 0, keyword: String) {
 
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
 
             when (val result = repository.getSearchArticle(page, keyword)) {
 
@@ -34,6 +39,25 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
 
                 }
             }
+            //插入数据库
+            repository.insertKeyWord(keyword)
+        }
+    }
+
+    fun getAllKeyword() {
+
+        viewModelScope.launch(Dispatchers.IO) {
+
+            _keywordData.postValue(repository.getAllKeyWord())
+        }
+
+    }
+
+    fun delete(keyWord: KeyWord) {
+
+        viewModelScope.launch(Dispatchers.IO) {
+
+            repository.delete(keyWord)
         }
     }
 }

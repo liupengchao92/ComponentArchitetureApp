@@ -73,25 +73,12 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/tv_hot_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:text="@string/search_hot_words"
-        android:textColor="@color/black"
-        android:textSize="17dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolBar" />
-
-    <com.zhy.view.flowlayout.TagFlowLayout
-        android:id="@+id/flowLayout"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/historyRv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_hot_search" />
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolBar" />
 
     <FrameLayout
         android:id="@+id/contentLayout"

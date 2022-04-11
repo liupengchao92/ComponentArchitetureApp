@@ -94,4 +94,8 @@ dependencies {
     implementation 'com.tencent:mmkv:1.2.11'
     api 'com.tencent.tbs:tbssdk:44176'
 
+    def room_version = "2.4.2"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
 }

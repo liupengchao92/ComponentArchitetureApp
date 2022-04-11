@@ -10,16 +10,22 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.LogUtils
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.example.lpc.lib_common.base.activity.BaseBindingActivity
 import com.example.lpc.lib_common.constant.ARouterConstant
 import com.example.lpc.lib_common.constant.ParamsKeyConstant
+import com.example.lpc.lib_common.database.entity.KeyWord
 import com.example.lpc.lib_common.http.pojo.HotKey
 import com.example.lpc.module_home.R
 import com.example.lpc.module_home.databinding.ActivitySearchBinding
+import com.example.lpc.module_home.databinding.ItemSearchTagBinding
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
@@ -34,6 +40,8 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
     private val viewModel: SearchViewModel by viewModels { SearchViewModelFactory() }
 
     private val articleAdapter = ArticleAdapter(mutableListOf())
+
+    private val historyAdapter = SearchHistoryAdapter(mutableListOf())
 
     @JvmField
     @Autowired(name = ParamsKeyConstant.CURRENT_HOT_KEY)
@@ -54,6 +62,7 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
 
         searchEdit.setText(hotKey)
 
+        viewModel.getAllKeyword()
 
         viewModel.resultData.observe(this) {
             contentLayout.visibility = View.VISIBLE
@@ -68,21 +77,54 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
             }
         }
 
+        viewModel.keywordData.observe(this){
+            historyAdapter.setNewInstance(it)
+            historyAdapter.notifyDataSetChanged()
+        }
+
         recyclerView.run {
 
             layoutManager = LinearLayoutManager(context)
 
+            itemAnimator = DefaultItemAnimator()
+
             adapter = articleAdapter
         }
 
-        flowLayout.adapter = hotKeyList?.let { HotKeyAdapter(it) }
+        historyRv.run {
 
-        flowLayout.setOnTagClickListener(object : TagFlowLayout.OnTagClickListener {
+            layoutManager = LinearLayoutManager(context)
+
+            itemAnimator = DefaultItemAnimator()
+
+            adapter = historyAdapter
+        }
+
+        var tagBinding = ItemSearchTagBinding.inflate(layoutInflater, null, false)
+
+        tagBinding.flowLayout.adapter = hotKeyList?.let { HotKeyAdapter(it) }
+
+        tagBinding.flowLayout.setOnTagClickListener(object : TagFlowLayout.OnTagClickListener {
             override fun onTagClick(view: View?, position: Int, parent: FlowLayout?): Boolean {
                 viewModel.search(0, hotKeyList?.get(position)?.name!!)
                 return true
             }
         })
+
+        historyAdapter.addHeaderView(tagBinding.root)
+        //点击事件
+        historyAdapter.setOnItemChildClickListener(object :OnItemChildClickListener{
+            override fun onItemChildClick(
+                adapter: BaseQuickAdapter<*, *>,
+                view: View,
+                position: Int
+            ) {
+                adapter.removeAt(position)
+                viewModel.delete(adapter.data[position] as KeyWord)
+                LogUtils.e("点击了${position}")
+            }
+        })
+
         //搜索
         searchEdit.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
@@ -132,7 +174,6 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
                 setTextColor(ContextCompat.getColor(this.context, R.color.colorPrimary))
 
                 setBackgroundResource(R.drawable.shape_search_tag_bg)
-
             }
         }
     }

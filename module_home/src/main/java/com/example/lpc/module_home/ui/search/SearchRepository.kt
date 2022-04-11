@@ -3,6 +3,8 @@ package com.example.lpc.module_home.ui.search
 import com.example.lpc.lib_common.base.repository.BaseRepositoryBoth
 import com.example.lpc.lib_common.base.repository.ILocalDataSource
 import com.example.lpc.lib_common.base.repository.IRemoteDataSource
+import com.example.lpc.lib_common.database.DatabaseManager
+import com.example.lpc.lib_common.database.entity.KeyWord
 import com.example.lpc.lib_common.extension.processApiResponse
 import com.example.lpc.lib_common.http.Results
 import com.example.lpc.lib_common.http.pojo.Article
@@ -28,7 +30,17 @@ class SearchRepository(
         return remoteDataSource.getSearchArticle(page, keyword)
     }
 
+    suspend fun getAllKeyWord(): MutableList<KeyWord> {
+        return localDataSource.getAll()
+    }
 
+    suspend fun insertKeyWord(keyWord: String) {
+        localDataSource.insertAll(keyWord)
+    }
+
+    suspend fun delete(keyWord: KeyWord) {
+        localDataSource.delete(keyWord)
+    }
 }
 
 
@@ -42,5 +54,18 @@ class SearchRemoteDataSource : IRemoteDataSource {
 }
 
 class SearchLocalDataSource : ILocalDataSource {
+
+    suspend fun getAll(): MutableList<KeyWord> {
+
+        return DatabaseManager.INSTANCE.getAll()
+    }
+
+    suspend fun insertAll(keyword: String) {
+        DatabaseManager.INSTANCE.insertAll(KeyWord(keyWord = keyword))
+    }
+
+    suspend fun delete(keyWord: KeyWord) {
+        DatabaseManager.INSTANCE.delete(keyWord)
+    }
 
 }
