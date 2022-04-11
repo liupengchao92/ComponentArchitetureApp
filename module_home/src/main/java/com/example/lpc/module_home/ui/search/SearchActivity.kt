@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.LogUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.example.lpc.lib_common.base.activity.BaseBindingActivity
@@ -77,7 +76,7 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
             }
         }
 
-        viewModel.keywordData.observe(this){
+        viewModel.keywordData.observe(this) {
             historyAdapter.setNewInstance(it)
             historyAdapter.notifyDataSetChanged()
         }
@@ -113,15 +112,15 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
 
         historyAdapter.addHeaderView(tagBinding.root)
         //点击事件
-        historyAdapter.setOnItemChildClickListener(object :OnItemChildClickListener{
+        historyAdapter.setOnItemChildClickListener(object : OnItemChildClickListener {
             override fun onItemChildClick(
                 adapter: BaseQuickAdapter<*, *>,
                 view: View,
                 position: Int
             ) {
+                var keyWord = adapter.data[position] as KeyWord
                 adapter.removeAt(position)
-                viewModel.delete(adapter.data[position] as KeyWord)
-                LogUtils.e("点击了${position}")
+                viewModel.delete(keyWord)
             }
         })
 

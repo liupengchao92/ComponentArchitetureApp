@@ -15,8 +15,14 @@ import com.example.lpc.lib_common.database.entity.KeyWord
 @Dao
 interface KeywordDao {
 
-    @Query("SELECT * FROM KEYWORD ")
+    @Query("SELECT * FROM KEYWORD ORDER BY id desc")
     fun getAllKeyWord(): MutableList<KeyWord>
+
+    @Query("SELECT * FROM KEYWORD WHERE key_word = :keyWord")
+    fun queryByKeyWord(keyWord: String): MutableList<KeyWord>
+
+    @Query("SELECT COUNT('key_word') FROM KEYWORD WHERE key_word= :keyWord")
+    fun queryByKeyWordCount(keyWord: String):Int
 
     @Insert
     fun insertAll(vararg keyWords: KeyWord)

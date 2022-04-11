@@ -39,8 +39,13 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
 
                 }
             }
-            //插入数据库
-            repository.insertKeyWord(keyword)
+            var keywordsList = repository.queryByKeyword(keyword)
+            if (keywordsList.isEmpty()){
+                //插入数据库
+                repository.insertKeyWord(keyword)
+                //查询所有数据
+                _keywordData.postValue(repository.getAllKeyWord())
+            }
         }
     }
 

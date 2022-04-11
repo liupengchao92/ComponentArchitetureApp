@@ -33,6 +33,10 @@ class DatabaseManager private constructor() {
         return database.getKeywordDao().getAllKeyWord()
     }
 
+    fun queryByKeyword(keyWord: String): MutableList<KeyWord> {
+        return database.getKeywordDao().queryByKeyWord(keyWord)
+    }
+
     fun insertAll(keyWord: KeyWord) {
         database.getKeywordDao().insertAll(keyWord)
     }

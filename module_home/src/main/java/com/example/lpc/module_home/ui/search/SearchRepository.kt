@@ -34,6 +34,10 @@ class SearchRepository(
         return localDataSource.getAll()
     }
 
+    suspend fun queryByKeyword(keyword: String):MutableList<KeyWord>{
+        return localDataSource.queryByKeyword(keyword)
+    }
+
     suspend fun insertKeyWord(keyWord: String) {
         localDataSource.insertAll(keyWord)
     }
@@ -58,6 +62,10 @@ class SearchLocalDataSource : ILocalDataSource {
     suspend fun getAll(): MutableList<KeyWord> {
 
         return DatabaseManager.INSTANCE.getAll()
+    }
+
+    suspend fun queryByKeyword(keyword: String): MutableList<KeyWord> {
+        return DatabaseManager.INSTANCE.queryByKeyword(keyword)
     }
 
     suspend fun insertAll(keyword: String) {
