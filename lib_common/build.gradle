@@ -98,4 +98,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
+    implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+
+
 }

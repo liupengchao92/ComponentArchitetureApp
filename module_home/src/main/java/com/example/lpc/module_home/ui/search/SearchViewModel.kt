@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.lpc.lib_common.base.viewstate.ViewState
 import com.example.lpc.lib_common.database.entity.KeyWord
 import com.example.lpc.lib_common.http.Results
 import com.example.lpc.lib_common.http.pojo.Article
@@ -25,7 +26,12 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
     private val _keywordData = MutableLiveData<MutableList<KeyWord>>()
     val keywordData: LiveData<MutableList<KeyWord>> = _keywordData
 
+    private val _viewState = MutableLiveData<ViewState>()
+    val viewState: LiveData<ViewState> = _viewState;
+
     fun search(page: Int = 0, keyword: String) {
+
+        _viewState.value = ViewState(loading = true)
 
         viewModelScope.launch(Dispatchers.IO) {
 
@@ -33,14 +39,16 @@ class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
 
                 is Results.Success -> {
                     _resultData.postValue(result.data!!)
+
+                    _viewState.postValue( ViewState(loading = false))
                 }
 
                 is Results.Failure -> {
-
+                    _viewState.postValue(ViewState(loading = false, throwable = result.throwable))
                 }
             }
             var keywordsList = repository.queryByKeyword(keyword)
-            if (keywordsList.isEmpty()){
+            if (keywordsList.isEmpty()) {
                 //插入数据库
                 repository.insertKeyWord(keyword)
                 //查询所有数据

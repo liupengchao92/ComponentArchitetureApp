@@ -63,6 +63,12 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
 
         viewModel.getAllKeyword()
 
+        viewModel.viewState.observe(this) {
+
+            loading.visibility = if (it.loading) View.VISIBLE else View.GONE
+
+        }
+
         viewModel.resultData.observe(this) {
             contentLayout.visibility = View.VISIBLE
             if (it.datas.isNullOrEmpty()) {
