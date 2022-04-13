@@ -32,6 +32,4 @@ abstract class BaseBindingActivity<VB : ViewBinding> :AppCompatActivity(){
     override fun onDestroy() {
         super.onDestroy()
     }
-
-
 }
