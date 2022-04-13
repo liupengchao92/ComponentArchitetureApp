@@ -23,6 +23,10 @@ class ArticleAdapter(var datas: MutableList<Article>) :
 
     var page = 0
 
+    init {
+        addChildClickViewIds(R.id.iv_favorite)
+    }
+
     override fun convert(holder: BaseViewHolder, item: Article) {
         //标题
         holder.setText(R.id.tv_title, item.title)
@@ -42,13 +46,15 @@ class ArticleAdapter(var datas: MutableList<Article>) :
             //时间
             append("  ${item.niceDate}")
         }
+        //是否收藏
+        holder.setImageResource(R.id.iv_favorite,if (item.collect) R.drawable.ic_like else R.drawable.ic_un_like)
         //时间
         holder.setText(R.id.tv_date, stringBuilder.toString())
         //是否是最新的
         holder.setGone(R.id.tv_refresh, !item.fresh)
         //是否置顶
         holder.setGone(R.id.tv_top, item.type == 0)
-
+        //
         //点击事件
         holder.getView<View>(R.id.itemView).setOnClickListener {
             val intent = Intent(ActivityUtils.getTopActivity(), CommonWebActivity::class.java)

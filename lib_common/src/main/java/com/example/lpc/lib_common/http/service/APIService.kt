@@ -1,7 +1,6 @@
 package com.example.lpc.lib_common.http.service
 
 import com.example.lpc.lib_common.http.BaseVo
-import com.example.lpc.lib_common.http.Results
 import com.example.lpc.lib_common.http.pojo.*
 import retrofit2.Response
 import retrofit2.http.GET
@@ -105,7 +104,24 @@ interface APIService {
      * @Desc:个人信息：https://wanandroid.com//user/lg/userinfo/json
      */
     @GET("/user/lg/userinfo/json")
-    suspend fun getUserInfo():Response<BaseVo<PersonalInfo>>
+    suspend fun getUserInfo(): Response<BaseVo<PersonalInfo>>
+
+    /**
+     * @param id Int
+     * @return Response<BaseVo<Any>>
+     * @Desc:收藏：https://www.wanandroid.com/lg/collect/1165/json
+     */
+    @POST("/lg/collect/{id}/json")
+    suspend fun collectInternalArticle(@Path("id") id: String): Response<BaseVo<Any>>
+
+
+    /**
+     * 取消收藏：https://www.wanandroid.com/lg/uncollect_originId/2333/json
+     * @param id Int
+     * @return Response<BaseVo<Any>>
+     */
+    @POST("/lg/uncollect_originId/{id}/json")
+    suspend fun cancelCollectInternalArticle(@Path("id")id: String):Response<BaseVo<Any>>
 
 
 }

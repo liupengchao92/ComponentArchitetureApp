@@ -3,11 +3,13 @@ package com.example.lpc.module_main.ui.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.blankj.utilcode.util.ToastUtils
 import com.example.lpc.lib_common.base.viewmodel.BaseViewModel
 import com.example.lpc.lib_common.http.Results
 import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.lib_common.http.pojo.Banner
 import com.example.lpc.lib_common.http.pojo.HotKey
+import com.example.lpc.module_main.R
 import com.example.lpc.module_main.ui.repository.HomeRemoteDataSource
 import com.example.lpc.module_main.ui.repository.HomeRepository
 import kotlinx.coroutines.Dispatchers
@@ -120,6 +122,29 @@ class HomeViewModel : BaseViewModel() {
                 is Results.Failure -> {
 
                 }
+            }
+        }
+    }
+
+    fun collectArticle(id: String) {
+
+        viewModelScope.launch {
+
+            if (repository.collectArticle(id) is Results.Success) {
+                ToastUtils.showShort(R.string.collect_success)
+            } else {
+                ToastUtils.showShort(R.string.collect_failure)
+            }
+        }
+    }
+
+    fun cancelCollectArticle(id: String) {
+
+        viewModelScope.launch {
+            if (repository.cancelCollectArticle(id) is Results.Success) {
+                ToastUtils.showShort(R.string.cancel_success)
+            } else {
+                ToastUtils.showShort(R.string.cancel_failure)
             }
         }
     }

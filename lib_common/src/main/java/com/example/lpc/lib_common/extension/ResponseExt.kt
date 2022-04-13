@@ -13,7 +13,7 @@ import retrofit2.Response
  * Desc:处理请求结果
  */
 
-inline fun <T> processApiResponse(response: () -> Response<BaseVo<T>>): Results<T> {
+inline fun <reified T> processApiResponse(response: () -> Response<BaseVo<T>>): Results<T> {
 
     return try {
 
@@ -27,11 +27,20 @@ inline fun <T> processApiResponse(response: () -> Response<BaseVo<T>>): Results<
 
                         if (baseVo.errorCode == 0) {
 
-                            Results.success(baseVo.data!!)
+                            if (baseVo.data == null) {
+                                Results.success(T::class.java.newInstance())
+                            } else {
+                                Results.success(baseVo.data!!)
+                            }
 
                         } else {
 
-                            Results.failure(Errors.NetWorException(baseVo.errorCode, baseVo.errorMsg))
+                            Results.failure(
+                                Errors.NetWorException(
+                                    baseVo.errorCode,
+                                    baseVo.errorMsg
+                                )
+                            )
 
                         }
                     }

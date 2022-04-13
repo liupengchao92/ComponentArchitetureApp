@@ -1,9 +1,13 @@
 package com.example.lpc.module_main.ui.fragment
 
-import android.content.Intent
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.view.Gravity
-import android.view.View
+import android.view.animation.AccelerateInterpolator
+import android.view.animation.Interpolator
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -11,19 +15,17 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.SizeUtils
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.example.lpc.lib_common.base.fragment.BaseFragment
 import com.example.lpc.lib_common.constant.ARouterConstant
-import com.example.lpc.lib_common.constant.ParamsKeyConstant
 import com.example.lpc.lib_common.constant.ParamsKeyConstant.CURRENT_HOT_KEY
 import com.example.lpc.lib_common.constant.ParamsKeyConstant.HOT_KEY_LIST
 import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.lib_common.http.pojo.HotKey
 import com.example.lpc.module_main.R
 import com.example.lpc.module_main.databinding.LayoutHomeBannerBinding
-import com.example.lpc.module_main.ui.activity.ui.web.CommonWebActivity
 import com.example.lpc.module_main.ui.adapter.ArticleAdapter
 import com.example.lpc.module_main.ui.adapter.ImageBannerAdapter
 import com.example.lpc.module_main.ui.viewmodel.HomeViewModel
@@ -76,6 +78,8 @@ class HomeFragment : BaseFragment() {
             }
         })
 
+        //点击事件
+        adapter.setOnItemChildClickListener(onItemChildClickListener)
 
         //设置Banner
         var binding = LayoutHomeBannerBinding.inflate(layoutInflater)
@@ -153,5 +157,43 @@ class HomeFragment : BaseFragment() {
                 refreshLayout.finishLoadMore();
             }
         })
+    }
+
+    private val onItemChildClickListener = OnItemChildClickListener { adapter, view, position ->
+        val article = adapter.data[position] as Article
+        when (view.id) {
+            R.id.iv_favorite -> {
+                //收藏
+                if (article.collect) {
+                    (view as ImageView).setImageResource(R.drawable.ic_un_like)
+
+                    viewModel.cancelCollectArticle(article.id!!)
+
+                } else {
+
+                    (view as ImageView).setImageResource(R.drawable.ic_like)
+
+                    viewModel.collectArticle(article.id!!)
+
+                    ValueAnimator.ofFloat(1f, 2f,1f).apply {
+                        addUpdateListener { animation ->
+                            view.scaleX = animation?.animatedValue as Float
+                            view.scaleY = animation?.animatedValue as Float
+                        }
+                        duration = 300
+                        start()
+                    }
+                  /*  var scaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.5f, 2f, 1.5f, 1f)
+                    var scaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.5f, 2f, 1.5f, 1f)
+                    var animator = AnimatorSet()
+                    animator.play(scaleX).with(scaleY)
+                    animator.duration = 300
+                    animator.interpolator = AccelerateInterpolator()
+                    animator.start()*/
+                }
+
+                (adapter.data[position] as Article).collect = !article.collect
+            }
+        }
     }
 }

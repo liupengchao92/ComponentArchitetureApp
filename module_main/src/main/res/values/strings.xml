@@ -27,5 +27,8 @@
     <string name="my_favorite">我的收藏</string>
     <string name="my_share">我的分享</string>
     <string name="my_setting">设置</string>
-
+    <string name="collect_success">收藏成功！</string>
+    <string name="collect_failure">收藏失败！</string>
+    <string name="cancel_success">取消成功！</string>
+    <string name="cancel_failure">取消失败！</string>
 </resources>
