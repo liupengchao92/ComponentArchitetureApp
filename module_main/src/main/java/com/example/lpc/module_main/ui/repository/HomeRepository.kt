@@ -75,7 +75,7 @@ class HomeRemoteDataSource : IRemoteDataSource {
     }
 
     suspend fun cancelCollectArticle(id: String): Results<Any> {
-        return processApiResponse { RetrofitHelper.apiService.collectInternalArticle(id) }
+        return processApiResponse { RetrofitHelper.apiService.cancelCollectInternalArticle(id) }
     }
 }
 
