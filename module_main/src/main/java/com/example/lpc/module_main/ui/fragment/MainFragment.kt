@@ -87,11 +87,8 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
                     } else {
                         beginTransaction.show(homeFragment)
                     }
-                    BarUtils.setStatusBarColor(
-                        requireActivity(),
-                        ColorUtils.getColor(R.color.colorPrimary)
-                    )
-                    BarUtils.setStatusBarLightMode(requireActivity(), false)
+
+                    setStatusBarLightMode(false)
                 }
 
                 NAVIGATION -> {
@@ -106,6 +103,8 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
                     } else {
                         beginTransaction.show(navigationFragment)
                     }
+
+                    setStatusBarLightMode(false)
                 }
 
                 QUESTION -> {
@@ -135,15 +134,19 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
                         beginTransaction.show(profileFragment)
                     }
 
-                    BarUtils.setStatusBarColor(
-                        requireActivity(),
-                        ColorUtils.getColor(R.color.white)
-                    )
-                    BarUtils.setStatusBarLightMode(requireActivity(), true)
+                    setStatusBarLightMode(true)
                 }
             }
             //提交事务
             beginTransaction.commit()
         }
+    }
+
+    private fun setStatusBarLightMode(isLightMode: Boolean) {
+        BarUtils.setStatusBarColor(
+            requireActivity(),
+            ColorUtils.getColor(if (isLightMode) R.color.white else R.color.colorPrimary)
+        )
+        BarUtils.setStatusBarLightMode(requireActivity(), isLightMode)
     }
 }

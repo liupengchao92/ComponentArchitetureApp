@@ -37,7 +37,7 @@ class CommonWebActivity : BaseActivity() {
             setSupportActionBar(this)
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-            setNavigationIcon(R.drawable.ic_back)
+            setNavigationIcon(R.drawable.ic_back_white)
 
         }
 
