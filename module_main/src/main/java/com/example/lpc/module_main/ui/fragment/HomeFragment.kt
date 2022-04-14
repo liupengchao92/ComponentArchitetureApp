@@ -1,11 +1,7 @@
 package com.example.lpc.module_main.ui.fragment
 
-import android.animation.AnimatorSet
-import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.view.Gravity
-import android.view.animation.AccelerateInterpolator
-import android.view.animation.Interpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
@@ -15,7 +11,6 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.SizeUtils
 import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.example.lpc.lib_common.base.fragment.BaseFragment
@@ -28,7 +23,7 @@ import com.example.lpc.module_main.R
 import com.example.lpc.module_main.databinding.LayoutHomeBannerBinding
 import com.example.lpc.module_main.ui.adapter.ArticleAdapter
 import com.example.lpc.module_main.ui.adapter.ImageBannerAdapter
-import com.example.lpc.module_main.ui.viewmodel.HomeViewModel
+import com.example.lpc.module_main.ui.fragment.home.HomeViewModel
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.youth.banner.indicator.CircleIndicator

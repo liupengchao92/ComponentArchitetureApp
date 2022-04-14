@@ -1,4 +1,4 @@
-package com.example.lpc.module_main.ui.viewmodel
+package com.example.lpc.module_main.ui.fragment.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

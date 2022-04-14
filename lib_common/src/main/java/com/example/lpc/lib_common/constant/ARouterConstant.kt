@@ -8,6 +8,14 @@ package com.example.lpc.lib_common.constant
  */
 object ARouterConstant {
 
+    object Common {
+
+        private const val COMMON = "/common"
+
+        const val WEB = "$COMMON/web"
+
+    }
+
     object App {
 
         private const val APP = "/app"

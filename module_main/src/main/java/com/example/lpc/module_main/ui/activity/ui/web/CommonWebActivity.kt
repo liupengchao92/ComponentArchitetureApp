@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.lpc.lib_common.base.activity.BaseActivity
+import com.example.lpc.lib_common.constant.ARouterConstant
 import com.example.lpc.lib_common.constant.ParamsKeyConstant
 import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.module_main.R
@@ -19,6 +21,7 @@ import com.tencent.smtt.sdk.WebView
 import com.tencent.smtt.sdk.WebViewClient
 import kotlinx.android.synthetic.main.activity_common_web.*
 
+@Route(path = ARouterConstant.Common.WEB)
 class CommonWebActivity : BaseActivity() {
 
     override var layoutResId: Int = R.layout.activity_common_web

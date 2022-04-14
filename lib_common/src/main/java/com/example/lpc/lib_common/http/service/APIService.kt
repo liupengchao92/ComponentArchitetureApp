@@ -121,7 +121,12 @@ interface APIService {
      * @return Response<BaseVo<Any>>
      */
     @POST("/lg/uncollect_originId/{id}/json")
-    suspend fun cancelCollectInternalArticle(@Path("id")id: String):Response<BaseVo<Any>>
+    suspend fun cancelCollectInternalArticle(@Path("id") id: String): Response<BaseVo<Any>>
 
-
+    /**
+     * 导航：https://www.wanandroid.com/navi/json
+     * @return Response<BaseVo<Any>>
+     */
+    @GET("/navi/json")
+    suspend fun getNavigationData(): Response<BaseVo<MutableList<Navigation>>>
 }
