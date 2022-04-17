@@ -129,4 +129,12 @@ interface APIService {
      */
     @GET("/navi/json")
     suspend fun getNavigationData(): Response<BaseVo<MutableList<Navigation>>>
+
+    /**
+     *  https://wanandroid.com/wenda/list/1/json
+     * @param page Int
+     * @return Response<BaseVo<PageVo<Article>>>
+     */
+    @GET("/wenda/list/{page}/json")
+    suspend fun getQuestionData(@Path("page") page: Int): Response<BaseVo<PageVo<Article>>>
 }

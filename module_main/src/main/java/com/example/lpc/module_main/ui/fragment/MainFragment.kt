@@ -119,6 +119,8 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
                     } else {
                         beginTransaction.show(questionFragment)
                     }
+
+                    setStatusBarLightMode(false)
                 }
 
                 PROFILE -> {

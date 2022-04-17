@@ -4,7 +4,6 @@ import android.content.Intent
 import android.text.TextUtils
 import android.view.View
 import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.AppUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.lpc.lib_common.constant.ParamsKeyConstant
@@ -47,14 +46,27 @@ class ArticleAdapter(var datas: MutableList<Article>) :
             append("  ${item.niceDate}")
         }
         //是否收藏
-        holder.setImageResource(R.id.iv_favorite,if (item.collect) R.drawable.ic_like else R.drawable.ic_un_like)
+        holder.setImageResource(
+            R.id.iv_favorite,
+            if (item.collect) R.drawable.ic_like else R.drawable.ic_un_like
+        )
         //时间
         holder.setText(R.id.tv_date, stringBuilder.toString())
         //是否是最新的
         holder.setGone(R.id.tv_refresh, !item.fresh)
         //是否置顶
         holder.setGone(R.id.tv_top, item.type == 0)
-        //
+        //标签
+        if (!item.tags.isNullOrEmpty()) {
+            holder.setGone(R.id.tv_tags, false)
+            val stringBuilder = StringBuilder()
+            item.tags?.forEach {
+                stringBuilder.append(it.name).append(" · ")
+            }
+            holder.setText(R.id.tv_tags, stringBuilder.substring(0, stringBuilder.lastIndex - 1))
+        } else {
+            holder.setGone(R.id.tv_tags, true)
+        }
         //点击事件
         holder.getView<View>(R.id.itemView).setOnClickListener {
             val intent = Intent(ActivityUtils.getTopActivity(), CommonWebActivity::class.java)
