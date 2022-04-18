@@ -8,6 +8,14 @@
         android:id="@+id/navi_home"
         android:icon="@drawable/ic_home"
         android:title="@string/home" />
+
+    <item
+        android:enabled="true"
+        app:showAsAction="ifRoom"
+        android:id="@+id/navi_discover"
+        android:icon="@drawable/ic_discover"
+        android:title="@string/discover" />
+
     <item
         android:enabled="true"
         app:showAsAction="ifRoom"

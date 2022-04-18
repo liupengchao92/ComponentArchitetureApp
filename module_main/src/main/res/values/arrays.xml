@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="discoverTabTitle">
+
+        <item>@string/square</item>
+        <item>@string/wedchat_account</item>
+        <item>@string/project</item>
+
+    </array>
+
+</resources>

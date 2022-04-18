@@ -5,12 +5,14 @@ import android.view.ViewGroup
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
 import com.example.lpc.lib_common.base.fragment.BaseBindingFragment
+import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.DISCOVER
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.HOME
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.NAVIGATION
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.PROFILE
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.QUESTION
 import com.example.lpc.module_main.R
 import com.example.lpc.module_main.databinding.FragmentMainBinding
+import com.example.lpc.module_main.ui.fragment.discover.DiscoverFragment
 import com.google.android.material.navigation.NavigationBarView
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -49,12 +51,19 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
             R.id.navi_home -> {
                 setCurrentPage(HOME)
             }
+
+            R.id.navi_discover -> {
+                setCurrentPage(DISCOVER)
+            }
+
             R.id.navi_navigation -> {
                 setCurrentPage(NAVIGATION)
             }
+
             R.id.navi_question -> {
                 setCurrentPage(QUESTION)
             }
+
             R.id.navi_profile -> {
                 setCurrentPage(PROFILE)
             }
@@ -86,6 +95,22 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
 
                     } else {
                         beginTransaction.show(homeFragment)
+                    }
+
+                    setStatusBarLightMode(false)
+                }
+
+                DISCOVER -> {
+                    var discoverFragment = it.findFragmentByTag(page)
+
+                    if (discoverFragment == null) {
+
+                        discoverFragment = DiscoverFragment()
+
+                        beginTransaction.add(R.id.contentContainer, discoverFragment, page)
+
+                    } else {
+                        beginTransaction.show(discoverFragment)
                     }
 
                     setStatusBarLightMode(false)

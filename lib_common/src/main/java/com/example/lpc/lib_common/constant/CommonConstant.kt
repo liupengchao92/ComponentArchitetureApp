@@ -13,6 +13,9 @@ object CommonConstant {
         //主页
         const val HOME = "home"
 
+        //发现
+        const val DISCOVER = "discover"
+
         //导航
         const val NAVIGATION = "navigation"
 
@@ -22,7 +25,6 @@ object CommonConstant {
         //个人
         const val PROFILE = "profile"
     }
-
 
 
 }
