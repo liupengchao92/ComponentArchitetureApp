@@ -1,4 +1,4 @@
-package com.example.lpc.module_main.ui.adapter
+package com.example.lpc.module_main.ui.fragment.home
 
 import android.content.Intent
 import android.text.TextUtils

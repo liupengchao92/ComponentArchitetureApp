@@ -11,6 +11,6 @@
     <dimen name="common_horizontal_padding">15dp</dimen>
 
 
-    <dimen name="toolbarSize">48dp</dimen>
+    <dimen name="toolbarSize">52dp</dimen>
 
 </resources>

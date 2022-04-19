@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <androidx.appcompat.widget.Toolbar
-        app:titleTextColor="@color/white"
-        app:title="@string/question"
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbarSize"
         android:background="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/question"
+        app:titleTextAppearance="@style/Toolbar.TitleText" />
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/smartRefreshLayout"

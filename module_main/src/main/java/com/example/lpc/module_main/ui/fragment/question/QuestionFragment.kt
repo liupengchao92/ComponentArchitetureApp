@@ -1,4 +1,4 @@
-package com.example.lpc.module_main.ui.fragment
+package com.example.lpc.module_main.ui.fragment.question
 
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
@@ -8,10 +8,7 @@ import com.example.lpc.lib_common.base.fragment.BaseFragment
 import com.example.lpc.lib_common.extension.binding
 import com.example.lpc.module_main.R
 import com.example.lpc.module_main.databinding.FragmentQuestionBinding
-import com.example.lpc.module_main.ui.adapter.ArticleAdapter
-import com.example.lpc.module_main.ui.fragment.question.QuestionRemoteDatasource
-import com.example.lpc.module_main.ui.fragment.question.QuestionRepository
-import com.example.lpc.module_main.ui.fragment.question.QuestionViewModel
+import com.example.lpc.module_main.ui.fragment.home.ArticleAdapter
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import kotlinx.android.synthetic.main.fragment_question.*

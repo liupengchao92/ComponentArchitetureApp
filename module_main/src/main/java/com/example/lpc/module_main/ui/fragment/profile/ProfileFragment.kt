@@ -1,4 +1,4 @@
-package com.example.lpc.module_main.ui.fragment
+package com.example.lpc.module_main.ui.fragment.profile
 
 import android.app.StatusBarManager
 import android.view.View

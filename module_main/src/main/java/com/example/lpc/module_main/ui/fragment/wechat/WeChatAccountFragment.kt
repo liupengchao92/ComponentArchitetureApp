@@ -1,4 +1,4 @@
-package com.example.lpc.module_main.ui.fragment
+package com.example.lpc.module_main.ui.fragment.wechat
 
 import com.example.lpc.lib_common.base.fragment.BaseFragment
 import com.example.lpc.module_main.R

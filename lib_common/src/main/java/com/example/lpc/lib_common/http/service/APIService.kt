@@ -137,4 +137,12 @@ interface APIService {
      */
     @GET("/wenda/list/{page}/json")
     suspend fun getQuestionData(@Path("page") page: Int): Response<BaseVo<PageVo<Article>>>
+
+    /**
+     *https://wanandroid.com/user_article/list/页码/json
+     * @param page Int
+     * @return Response<BaseVo<PageVo<Article>>>
+     */
+    @GET("/user_article/list/{page}/json")
+    suspend fun getSquareList(@Path("page") page: Int): Response<BaseVo<PageVo<Article>>>
 }

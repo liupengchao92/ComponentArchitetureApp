@@ -10,17 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbarSize"
         android:background="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/navigation"
-            android:textColor="@color/white"
-            android:textSize="17dp" />
-
-    </androidx.appcompat.widget.Toolbar>
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="@string/navigation"
+        app:titleTextAppearance="@style/Toolbar.TitleText" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -13,6 +13,10 @@ import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.QUES
 import com.example.lpc.module_main.R
 import com.example.lpc.module_main.databinding.FragmentMainBinding
 import com.example.lpc.module_main.ui.fragment.discover.DiscoverFragment
+import com.example.lpc.module_main.ui.fragment.home.HomeFragment
+import com.example.lpc.module_main.ui.fragment.navigation.NavigationFragment
+import com.example.lpc.module_main.ui.fragment.profile.ProfileFragment
+import com.example.lpc.module_main.ui.fragment.question.QuestionFragment
 import com.google.android.material.navigation.NavigationBarView
 import kotlinx.android.synthetic.main.fragment_main.*
 

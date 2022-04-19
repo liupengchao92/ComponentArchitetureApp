@@ -1,4 +1,4 @@
-package com.example.lpc.module_main.ui.fragment
+package com.example.lpc.module_main.ui.fragment.home
 
 import android.animation.ValueAnimator
 import android.view.Gravity
@@ -21,9 +21,6 @@ import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.lib_common.http.pojo.HotKey
 import com.example.lpc.module_main.R
 import com.example.lpc.module_main.databinding.LayoutHomeBannerBinding
-import com.example.lpc.module_main.ui.adapter.ArticleAdapter
-import com.example.lpc.module_main.ui.adapter.ImageBannerAdapter
-import com.example.lpc.module_main.ui.fragment.home.HomeViewModel
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import com.youth.banner.indicator.CircleIndicator

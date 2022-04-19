@@ -2,9 +2,9 @@ package com.example.lpc.module_main.ui.fragment.discover
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.lpc.module_main.ui.fragment.HotProjectFragment
-import com.example.lpc.module_main.ui.fragment.SquareFragment
-import com.example.lpc.module_main.ui.fragment.WeChatAccountFragment
+import com.example.lpc.module_main.ui.fragment.project.HotProjectFragment
+import com.example.lpc.module_main.ui.fragment.square.SquareFragment
+import com.example.lpc.module_main.ui.fragment.wechat.WeChatAccountFragment
 
 /**
  * Author: liupengchao

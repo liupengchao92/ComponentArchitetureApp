@@ -6,6 +6,7 @@ import android.view.KeyEvent
 import android.view.MenuItem
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.blankj.utilcode.util.LogUtils
 import com.example.lpc.lib_common.base.activity.BaseActivity
 import com.example.lpc.lib_common.constant.ARouterConstant
 import com.example.lpc.lib_common.constant.ParamsKeyConstant
@@ -79,6 +80,7 @@ class CommonWebActivity : BaseActivity() {
             loadsImagesAutomatically = true   //支持自动加载图片
 
             domStorageEnabled = true
+
         }
     }
 
@@ -128,6 +130,8 @@ class CommonWebActivity : BaseActivity() {
 
         override fun onReceivedError(p0: WebView?, p1: WebResourceRequest?, p2: WebResourceError?) {
             super.onReceivedError(p0, p1, p2)
+
+            LogUtils.e("onReceivedError====>${p2?.errorCode}")
         }
 
         override fun onReceivedSslError(
