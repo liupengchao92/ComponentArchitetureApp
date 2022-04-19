@@ -29,7 +29,7 @@ class QuestionViewModel(private val repository: QuestionRepository) : BaseViewMo
 
             if (result is Results.Success) {
 
-                _articleLiveData.postValue(result.data)
+                _articleLiveData.postValue(result.data!!)
             }
         }
     }
