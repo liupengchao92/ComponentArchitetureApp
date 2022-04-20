@@ -2,6 +2,7 @@ package com.example.lpc.lib_common.database
 
 import androidx.room.Room
 import com.example.lpc.lib_common.application.BaseApplication
+import com.example.lpc.lib_common.database.dao.KeywordDao
 import com.example.lpc.lib_common.database.entity.KeyWord
 
 /**
@@ -18,7 +19,7 @@ class DatabaseManager private constructor() {
 
     }
 
-    private val database: AppDatabase by lazy {
+    val database: AppDatabase by lazy {
         Room.databaseBuilder(
             BaseApplication.INSTANCE.applicationContext,
             AppDatabase::class.java,
@@ -26,6 +27,10 @@ class DatabaseManager private constructor() {
         )
             .fallbackToDestructiveMigration()
             .build()
+    }
+
+    fun getKeyWordDao(): KeywordDao {
+        return database.getKeywordDao()
     }
 
 

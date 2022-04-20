@@ -4,6 +4,7 @@ import com.example.lpc.lib_common.base.repository.BaseRepositoryBoth
 import com.example.lpc.lib_common.base.repository.ILocalDataSource
 import com.example.lpc.lib_common.base.repository.IRemoteDataSource
 import com.example.lpc.lib_common.database.DatabaseManager
+import com.example.lpc.lib_common.database.dao.KeywordDao
 import com.example.lpc.lib_common.database.entity.KeyWord
 import com.example.lpc.lib_common.extension.processApiResponse
 import com.example.lpc.lib_common.http.Results
@@ -57,23 +58,23 @@ class SearchRemoteDataSource : IRemoteDataSource {
 
 }
 
-class SearchLocalDataSource : ILocalDataSource {
+class SearchLocalDataSource(private val dao:KeywordDao) : ILocalDataSource {
 
     suspend fun getAll(): MutableList<KeyWord> {
 
-        return DatabaseManager.INSTANCE.getAll()
+        return dao.getAllKeyWord()
     }
 
     suspend fun queryByKeyword(keyword: String): MutableList<KeyWord> {
-        return DatabaseManager.INSTANCE.queryByKeyword(keyword)
+        return dao.queryByKeyWord(keyword)
     }
 
     suspend fun insertAll(keyword: String) {
-        DatabaseManager.INSTANCE.insertAll(KeyWord(keyWord = keyword))
+        dao.insertAll(KeyWord(keyWord = keyword))
     }
 
     suspend fun delete(keyWord: KeyWord) {
-        DatabaseManager.INSTANCE.delete(keyWord)
+        dao.delete(keyWord)
     }
 
 }

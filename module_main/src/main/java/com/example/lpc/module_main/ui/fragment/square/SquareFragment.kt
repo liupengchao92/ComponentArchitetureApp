@@ -49,7 +49,6 @@ class SquareFragment : BaseFragment() {
 
         //加载状态
         pagingAdapter.loadStateFlow.asLiveData().observe(this) { loadState ->
-            LogUtils.d("loadStateFlow====${loadState}")
 
             if (loadState.refresh is LoadState.NotLoading) {
                 smartRefreshLayout.finishRefresh()

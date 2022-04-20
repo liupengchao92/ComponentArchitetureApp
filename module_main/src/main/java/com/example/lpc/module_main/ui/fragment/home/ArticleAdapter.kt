@@ -20,7 +20,9 @@ import com.example.lpc.module_main.ui.activity.ui.web.CommonWebActivity
 class ArticleAdapter(var datas: MutableList<Article>) :
     BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article, datas) {
 
-    var page = 0
+    var isRefresh: Boolean = false
+
+    var curPage = 0
 
     init {
         addChildClickViewIds(R.id.iv_favorite)
@@ -77,6 +79,6 @@ class ArticleAdapter(var datas: MutableList<Article>) :
 
     override fun addData(newData: Collection<Article>) {
         super.addData(newData)
-        page++;
+        curPage++;
     }
 }

@@ -22,9 +22,6 @@ import com.example.lpc.module_main.ui.activity.ui.web.CommonWebActivity
  */
 class ArticlePagingAdapter : PagingDataAdapter<Article, BaseViewHolder>(diffCallback) {
 
-    //是否刷新
-    val isRefresh: Boolean = false
-
     companion object {
 
         val diffCallback = object : DiffUtil.ItemCallback<Article>() {

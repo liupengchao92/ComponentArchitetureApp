@@ -145,4 +145,38 @@ interface APIService {
      */
     @GET("/user_article/list/{page}/json")
     suspend fun getSquareList(@Path("page") page: Int): Response<BaseVo<PageVo<Article>>>
+
+    /**
+     * 公众号列表
+     * @return Response<BaseVo<MutableList<WxChapter>>>
+     * https://wanandroid.com/wxarticle/chapters/json
+     */
+    @GET("/wxarticle/chapters/json")
+    suspend fun getWxChapters(): Response<BaseVo<MutableList<WxChapter>>>
+
+    /**
+     * 公众号文章
+     * @param page Int
+     * @param id String
+     * @return Response<BaseVo<PageVo<Article>>>
+     */
+    @GET("/wxarticle/list/{id}/{page}/json")
+    suspend fun getWxArticle(
+        @Path("page") page: Int,
+        @Path("id") id: String
+    ): Response<BaseVo<PageVo<Article>>>
+
+    /**
+     * 公众号文章搜索
+     * @param page Int
+     * @param id String
+     * @param keyword String
+     * @return Response<BaseVo<PageVo<Article>>>
+     */
+    @GET("/wxarticle/list/{id}/{page}/json")
+    suspend fun searchWxArticle(
+        @Path("page") page: Int,
+        @Path("id") id: String,
+        @Query("keyword") keyword: String
+    ): Response<BaseVo<PageVo<Article>>>
 }

@@ -49,7 +49,7 @@ class QuestionFragment : BaseFragment() {
             }
 
             override fun onLoadMore(refreshLayout: RefreshLayout) {
-                viewModel.getQuestion(adapter.page)
+                viewModel.getQuestion(adapter.curPage)
 
                 isRefresh = false
             }
@@ -67,16 +67,15 @@ class QuestionFragment : BaseFragment() {
     override fun onLoadData() {
 
         viewModel.getQuestion(0)
-        
+
         viewModel.articleLiveData.observe(this) {
             if (isRefresh) {
                 adapter.setNewInstance(it.datas)
                 smartRefreshLayout.finishRefresh()
             } else {
                 adapter.addData(it.datas!!)
-                adapter.page = it.curPage + 1
+                adapter.curPage = it.curPage
                 smartRefreshLayout.finishLoadMore()
-
             }
         }
     }

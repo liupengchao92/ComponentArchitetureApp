@@ -66,7 +66,7 @@ class HomeFragment : BaseFragment() {
             }
 
             override fun onLoadMore(refreshLayout: RefreshLayout) {
-                viewModel.getArticle(adapter.page)
+                viewModel.getArticle(adapter.curPage)
             }
         })
 
