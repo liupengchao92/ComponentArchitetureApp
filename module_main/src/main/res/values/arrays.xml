@@ -4,8 +4,8 @@
     <array name="discoverTabTitle">
 
         <item>@string/square</item>
+        <item>@string/question</item>
         <item>@string/wedchat_account</item>
-        <item>@string/project</item>
 
     </array>
 

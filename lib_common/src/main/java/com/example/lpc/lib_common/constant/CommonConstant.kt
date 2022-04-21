@@ -19,8 +19,8 @@ object CommonConstant {
         //导航
         const val NAVIGATION = "navigation"
 
-        //问答
-        const val QUESTION = "question"
+        //项目
+        const val PROJECT = "project"
 
         //个人
         const val PROFILE = "profile"

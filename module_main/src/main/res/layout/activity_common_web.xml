@@ -8,6 +8,8 @@
 
 
     <androidx.appcompat.widget.Toolbar
+        app:titleMargin="0dp"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
         android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/toolbarSize"

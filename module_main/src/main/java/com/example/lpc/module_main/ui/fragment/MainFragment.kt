@@ -9,14 +9,14 @@ import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.DISC
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.HOME
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.NAVIGATION
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.PROFILE
-import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.QUESTION
+import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.PROJECT
 import com.example.lpc.module_main.R
 import com.example.lpc.module_main.databinding.FragmentMainBinding
 import com.example.lpc.module_main.ui.fragment.discover.DiscoverFragment
 import com.example.lpc.module_main.ui.fragment.home.HomeFragment
 import com.example.lpc.module_main.ui.fragment.navigation.NavigationFragment
 import com.example.lpc.module_main.ui.fragment.profile.ProfileFragment
-import com.example.lpc.module_main.ui.fragment.question.QuestionFragment
+import com.example.lpc.module_main.ui.fragment.project.ProjectFragment
 import com.google.android.material.navigation.NavigationBarView
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -64,8 +64,8 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
                 setCurrentPage(NAVIGATION)
             }
 
-            R.id.navi_question -> {
-                setCurrentPage(QUESTION)
+            R.id.navi_project -> {
+                setCurrentPage(PROJECT)
             }
 
             R.id.navi_profile -> {
@@ -136,17 +136,17 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
                     setStatusBarLightMode(false)
                 }
 
-                QUESTION -> {
-                    var questionFragment = it.findFragmentByTag(page)
+                PROJECT -> {
+                    var projectFragment = it.findFragmentByTag(page)
 
-                    if (questionFragment == null) {
+                    if (projectFragment == null) {
 
-                        questionFragment = QuestionFragment()
+                        projectFragment = ProjectFragment()
 
-                        beginTransaction.add(R.id.contentContainer, questionFragment, page)
+                        beginTransaction.add(R.id.contentContainer, projectFragment, page)
 
                     } else {
-                        beginTransaction.show(questionFragment)
+                        beginTransaction.show(projectFragment)
                     }
 
                     setStatusBarLightMode(false)

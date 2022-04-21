@@ -4,6 +4,8 @@ import android.view.Gravity
 import android.view.View
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.marginTop
+import com.blankj.utilcode.util.SizeUtils
 import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.module_main.R
 import com.zhy.view.flowlayout.FlowLayout
@@ -23,7 +25,7 @@ class NavigationTagAdapter(tags: MutableList<Article>) : TagAdapter<Article>(tag
 
             text = item?.title
 
-            textSize = 14f
+            textSize = 15f
 
             gravity = Gravity.CENTER
 

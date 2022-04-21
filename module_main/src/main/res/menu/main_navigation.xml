@@ -25,9 +25,9 @@
     <item
         android:enabled="true"
         app:showAsAction="ifRoom"
-        android:id="@+id/navi_question"
-        android:icon="@drawable/ic_question"
-        android:title="@string/question" />
+        android:id="@+id/navi_project"
+        android:icon="@drawable/ic_project"
+        android:title="@string/project" />
     <item
         android:enabled="true"
         app:showAsAction="ifRoom"
