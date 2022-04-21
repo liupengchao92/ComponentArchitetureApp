@@ -1,15 +1,22 @@
 package com.example.lpc.module_main.ui.fragment.project
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.ToastUtils
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.example.lpc.lib_common.base.fragment.BaseFragment
 import com.example.lpc.lib_common.constant.ParamsKeyConstant
+import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.lib_common.http.pojo.ProjectTree
 import com.example.lpc.module_main.R
-import com.example.lpc.module_main.ui.fragment.home.ArticleAdapter
+import com.example.lpc.module_main.ui.activity.ui.web.CommonWebActivity
 import kotlinx.android.synthetic.main.fragment_project_list.*
 
 /**
@@ -20,7 +27,7 @@ import kotlinx.android.synthetic.main.fragment_project_list.*
  */
 class ProjectListFragment : BaseFragment() {
 
-    private val adapter: ArticleAdapter by lazy { ArticleAdapter() }
+    private val adapter: ProjectListAdapter by lazy { ProjectListAdapter() }
 
     private val projectTree by lazy { arguments?.getSerializable(ParamsKeyConstant.TREE) as ProjectTree }
 
@@ -56,6 +63,28 @@ class ProjectListFragment : BaseFragment() {
 
             adapter = this@ProjectListFragment.adapter
         }
+
+        adapter.setOnItemChildClickListener(object : OnItemChildClickListener {
+            override fun onItemChildClick(
+                adapter: BaseQuickAdapter<*, *>,
+                view: View,
+                position: Int
+            ) {
+                var project = adapter.data[position] as Article
+
+                when (view.id) {
+                    R.id.itemView -> {
+                        val intent = Intent(requireActivity(), CommonWebActivity::class.java)
+                        intent.putExtra(ParamsKeyConstant.ARTICLE, project)
+                        ActivityUtils.getTopActivity().startActivity(intent)
+                    }
+
+                    R.id.iv_favorite -> {
+                       ToastUtils.showShort("收藏")
+                    }
+                }
+            }
+        })
     }
 
     override fun onLoadData() {
