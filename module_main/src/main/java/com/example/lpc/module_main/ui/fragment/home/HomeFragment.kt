@@ -40,7 +40,7 @@ class HomeFragment : BaseFragment() {
     private val viewModel by viewModels<HomeViewModel>()
 
     //适配器
-    private val adapter: ArticleAdapter = ArticleAdapter(mutableListOf())
+    private val adapter by lazy { ArticleAdapter() }
 
     private val bannerAdapter: ImageBannerAdapter = ImageBannerAdapter(mutableListOf())
 

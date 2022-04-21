@@ -179,4 +179,28 @@ interface APIService {
         @Path("id") id: String,
         @Query("keyword") keyword: String
     ): Response<BaseVo<PageVo<Article>>>
+
+
+    /**
+     * 项目分类
+     * https://www.wanandroid.com/project/tree/json
+     * @return Response<BaseVo<MutableList<ProjectTree>>>
+     */
+    @GET("/project/tree/json")
+    suspend fun getProjectTree(): Response<BaseVo<MutableList<ProjectTree>>>
+
+    /**
+     * 项目列表
+     *https://www.wanandroid.com/project/list/1/json?cid=294
+     * @param page Int
+     * @param id String
+     * @return Response<BaseVo<PageVo<Article>>>
+     */
+    @GET("/project/list/{page}/json")
+    suspend fun getProjectList(
+        @Path("page") page: Int,
+        @Query("cid") id: String
+    ): Response<BaseVo<PageVo<Article>>>
+
+
 }

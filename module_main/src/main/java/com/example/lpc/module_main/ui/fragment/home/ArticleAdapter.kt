@@ -17,7 +17,7 @@ import com.example.lpc.module_main.ui.activity.ui.web.CommonWebActivity
  * ClassName :HomeAdapter
  * Desc:文章
  */
-class ArticleAdapter(var datas: MutableList<Article>) :
+class ArticleAdapter(var datas: MutableList<Article> = mutableListOf()) :
     BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_article, datas) {
 
     var isRefresh: Boolean = false

@@ -23,7 +23,7 @@ class QuestionFragment : BaseFragment() {
 
     private val binding by binding(FragmentQuestionBinding::bind)
 
-    private val adapter = ArticleAdapter(mutableListOf())
+    private val adapter by lazy { ArticleAdapter() }
 
     private var isRefresh: Boolean = false
 

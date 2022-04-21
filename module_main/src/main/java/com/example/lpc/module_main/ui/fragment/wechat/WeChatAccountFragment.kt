@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.fragment_wechat.*
  */
 class WeChatAccountFragment : BaseFragment() {
 
-    private val adapter by lazy { ArticleAdapter(mutableListOf()) }
+    private val adapter by lazy { ArticleAdapter() }
 
     private var chapterAdapter = ChapterAdapter()
 

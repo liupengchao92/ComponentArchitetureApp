@@ -14,4 +14,6 @@ object ParamsKeyConstant {
 
     const val ARTICLE = "article"
 
+    const val TREE = "tree"
+
 }
