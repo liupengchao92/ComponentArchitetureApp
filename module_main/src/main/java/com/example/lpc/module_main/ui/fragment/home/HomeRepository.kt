@@ -37,15 +37,6 @@ class HomeRepository(var dataSource: HomeRemoteDataSource) :
 
         return dataSource.getSearchHotKey()
     }
-
-    suspend fun collectArticle(id: String): Results<Any> {
-        return dataSource.collectArticle(id)
-    }
-
-    suspend fun cancelCollectArticle(id: String): Results<Any> {
-        return dataSource.cancelCollectArticle(id)
-    }
-
 }
 
 class HomeRemoteDataSource : IRemoteDataSource {
@@ -67,15 +58,6 @@ class HomeRemoteDataSource : IRemoteDataSource {
     suspend fun getSearchHotKey(): Results<MutableList<HotKey>> {
 
         return processApiResponse { RetrofitHelper.apiService.getSearchHotKey() }
-    }
-
-    suspend fun collectArticle(id: String): Results<Any> {
-
-        return processApiResponse { RetrofitHelper.apiService.collectInternalArticle(id) }
-    }
-
-    suspend fun cancelCollectArticle(id: String): Results<Any> {
-        return processApiResponse { RetrofitHelper.apiService.cancelCollectInternalArticle(id) }
     }
 }
 

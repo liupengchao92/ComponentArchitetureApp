@@ -41,7 +41,6 @@ inline fun <reified T> processApiResponse(response: () -> Response<BaseVo<T>>): 
                                     baseVo.errorMsg
                                 )
                             )
-
                         }
                     }
 

@@ -3,14 +3,12 @@ package com.example.lpc.module_main.ui.fragment.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.blankj.utilcode.util.ToastUtils
-import com.example.lpc.lib_common.base.viewmodel.BaseViewModel
 import com.example.lpc.lib_common.http.Results
 import com.example.lpc.lib_common.http.pojo.Article
 import com.example.lpc.lib_common.http.pojo.Banner
 import com.example.lpc.lib_common.http.pojo.HotKey
-import com.example.lpc.module_main.R
-import com.example.lpc.module_main.ui.repository.HomeRemoteDataSource
+import com.example.lpc.module_main.ui.activity.ui.collect.CollectRepository
+import com.example.lpc.module_main.ui.activity.ui.collect.CollectViewModel
 import com.example.lpc.module_main.ui.repository.HomeRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -23,11 +21,10 @@ import kotlinx.coroutines.withContext
  * ClassName :HomeViewModel
  * Desc:
  */
-class HomeViewModel : BaseViewModel() {
-
-    private val dataSource: HomeRemoteDataSource by lazy { HomeRemoteDataSource() }
-
-    private val repository: HomeRepository by lazy { HomeRepository(dataSource) }
+class HomeViewModel(
+    private val repository: HomeRepository,
+    private val collectRepository: CollectRepository
+) : CollectViewModel(collectRepository) {
 
     private val _articleLiveData = MutableLiveData<MutableList<Article>>()
     val articleLiveData: LiveData<MutableList<Article>> = _articleLiveData
@@ -122,29 +119,6 @@ class HomeViewModel : BaseViewModel() {
                 is Results.Failure -> {
 
                 }
-            }
-        }
-    }
-
-    fun collectArticle(id: String) {
-
-        viewModelScope.launch {
-
-            if (repository.collectArticle(id) is Results.Success) {
-                ToastUtils.showShort(R.string.collect_success)
-            } else {
-                ToastUtils.showShort(R.string.collect_failure)
-            }
-        }
-    }
-
-    fun cancelCollectArticle(id: String) {
-
-        viewModelScope.launch {
-            if (repository.cancelCollectArticle(id) is Results.Success) {
-                ToastUtils.showShort(R.string.cancel_success)
-            } else {
-                ToastUtils.showShort(R.string.cancel_failure)
             }
         }
     }
