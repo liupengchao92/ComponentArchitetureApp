@@ -14,6 +14,10 @@ import com.example.lpc.module_main.R
  */
 class ProjectListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.item_project) {
 
+    var isRefresh: Boolean = false
+
+    var currPage = 0
+
     init {
 
         addChildClickViewIds(R.id.itemView, R.id.iv_favorite)
@@ -26,6 +30,8 @@ class ProjectListAdapter : BaseQuickAdapter<Article, BaseViewHolder>(R.layout.it
         holder.setText(R.id.descTv, item.desc)
 
         holder.setText(R.id.dateDescTv, item.niceDate)
+
+        holder.setImageResource(R.id.iv_favorite,if (item.collect)R.drawable.ic_like else R.drawable.ic_un_like)
 
         item.envelopePic?.let {
             GlideUtils.loadImage(it, holder.getView(R.id.coverIv))

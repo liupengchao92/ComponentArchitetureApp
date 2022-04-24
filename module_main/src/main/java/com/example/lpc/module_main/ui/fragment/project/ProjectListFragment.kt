@@ -20,6 +20,8 @@ import com.example.lpc.module_main.R
 import com.example.lpc.module_main.ui.activity.ui.collect.CollectDataSource
 import com.example.lpc.module_main.ui.activity.ui.collect.CollectRepository
 import com.example.lpc.module_main.ui.activity.ui.web.CommonWebActivity
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnRefreshLoadMoreListener
 import kotlinx.android.synthetic.main.fragment_project_list.*
 
 /**
@@ -59,9 +61,23 @@ class ProjectListFragment : BaseFragment() {
 
     override var layoutResId: Int = R.layout.fragment_project_list
 
-
     override fun onCreate() {
 
+        smartRefreshLayout.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+
+            override fun onRefresh(refreshLayout: RefreshLayout) {
+
+                adapter.isRefresh = true
+
+                adapter.currPage = 0
+
+                viewModel.getProjectList(id, projectTree.id)
+            }
+
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                viewModel.getProjectList(adapter.currPage, projectTree.id)
+            }
+        })
 
         recyclerView.run {
 
@@ -69,6 +85,7 @@ class ProjectListFragment : BaseFragment() {
 
             adapter = this@ProjectListFragment.adapter
         }
+
 
         adapter.setOnItemChildClickListener(object : OnItemChildClickListener {
             override fun onItemChildClick(
@@ -113,9 +130,15 @@ class ProjectListFragment : BaseFragment() {
         viewModel.getProjectList(id = projectTree.id)
 
         viewModel.projectLiveData.observe(this) {
-
-            adapter.setNewInstance(it.datas)
-
+            if (adapter.isRefresh) {
+                adapter.setNewInstance(it.datas)
+                smartRefreshLayout.finishRefresh()
+            } else {
+                adapter.addData(it.datas!!)
+                adapter.currPage++
+                smartRefreshLayout.finishLoadMore()
+            }
+            adapter.isRefresh = false
         }
     }
 }
