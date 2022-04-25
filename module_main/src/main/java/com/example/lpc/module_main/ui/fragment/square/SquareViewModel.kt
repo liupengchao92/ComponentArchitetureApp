@@ -1,6 +1,7 @@
 package com.example.lpc.module_main.ui.fragment.square
 
-import com.example.lpc.lib_common.base.viewmodel.BaseViewModel
+import com.example.lpc.module_main.ui.activity.ui.collect.CollectRepository
+import com.example.lpc.module_main.ui.activity.ui.collect.CollectViewModel
 
 /**
  * Author: liupengchao
@@ -8,7 +9,10 @@ import com.example.lpc.lib_common.base.viewmodel.BaseViewModel
  * ClassName :SquareViewModel
  * Desc:
  */
-class SquareViewModel(private val repository: SquareRepository) : BaseViewModel() {
+class SquareViewModel(
+    private val repository: SquareRepository,
+    private val collectRepository: CollectRepository
+) : CollectViewModel(collectRepository) {
 
     val flow = repository.getSquareListByPaging()
 }

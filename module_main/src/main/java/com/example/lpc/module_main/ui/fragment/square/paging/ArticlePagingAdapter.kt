@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import com.blankj.utilcode.util.ActivityUtils
@@ -21,6 +22,9 @@ import com.example.lpc.module_main.ui.activity.ui.web.CommonWebActivity
  * Desc:
  */
 class ArticlePagingAdapter : PagingDataAdapter<Article, BaseViewHolder>(diffCallback) {
+
+    //点击事件
+    var onItemClickListener: OnItemClickListener? = null
 
     companion object {
 
@@ -98,6 +102,27 @@ class ArticlePagingAdapter : PagingDataAdapter<Article, BaseViewHolder>(diffCall
                 intent.putExtra(ParamsKeyConstant.ARTICLE, item)
                 ActivityUtils.getTopActivity().startActivity(intent)
             }
+
+            //点击事件
+            holder.getView<ImageView>(R.id.iv_favorite).setOnClickListener {
+
+                onItemClickListener?.onItemChildClick(this, view = it, position)
+            }
         }
+
+    }
+
+    /**
+     * 获取Item
+     * @param position Int
+     * @return Article?
+     */
+    fun getItemData(position: Int): Article? {
+        return getItem(position)
+    }
+
+    interface OnItemClickListener {
+
+        fun onItemChildClick(adapter: PagingDataAdapter<*, *>, view: View, position: Int)
     }
 }

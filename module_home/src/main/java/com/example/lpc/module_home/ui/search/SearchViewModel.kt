@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.lpc.lib_common.base.viewmodel.BaseViewModel
 import com.example.lpc.lib_common.base.viewstate.ViewState
 import com.example.lpc.lib_common.database.entity.KeyWord
 import com.example.lpc.lib_common.http.Results
@@ -18,7 +19,7 @@ import kotlinx.coroutines.launch
  * ClassName :SearchViewModel
  * Desc:搜索
  */
-class SearchViewModel(private val repository: SearchRepository) : ViewModel() {
+class SearchViewModel(private val repository: SearchRepository) : BaseViewModel() {
 
     private val _resultData = MutableLiveData<PageVo<Article>>()
     val resultData: LiveData<PageVo<Article>> = _resultData
