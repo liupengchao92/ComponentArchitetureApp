@@ -24,3 +24,4 @@ include ':lib_init_api'
 
 include ':module_main'
 include ':module_home'
+include ':module_profile'
