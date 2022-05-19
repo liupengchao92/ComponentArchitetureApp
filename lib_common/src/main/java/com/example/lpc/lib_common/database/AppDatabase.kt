@@ -11,7 +11,7 @@ import com.example.lpc.lib_common.database.entity.KeyWord
  * ClassName :AppDatabase
  * Desc:
  */
-@Database(entities = [KeyWord::class], version = 1)
+@Database(entities = [KeyWord::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun getKeywordDao(): KeywordDao

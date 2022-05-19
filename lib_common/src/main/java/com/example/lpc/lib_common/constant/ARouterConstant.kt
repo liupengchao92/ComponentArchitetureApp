@@ -41,4 +41,11 @@ object ARouterConstant {
 
         const val SEARCH_PATH = "${HOME}/search"
     }
+
+    object Profile {
+
+        private const val PROFILE = "/profile"
+
+        const val SETTING_PATH = "${PROFILE}/setting"
+    }
 }

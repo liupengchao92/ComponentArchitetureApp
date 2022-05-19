@@ -3,7 +3,11 @@
     package="com.example.lpc.module_profile">
 
     <application>
+
         <activity android:name=".MainActivity" />
+
+        <activity android:name=".ui.setting.SettingActivity" />
+
     </application>
 
 </manifest>

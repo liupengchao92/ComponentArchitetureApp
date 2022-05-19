@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComponentArchitecture">
         <activity
+            android:name=".ui.setting.SettingActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.lpc.module_profile.MainActivity"
             android:exported="true">
             <intent-filter>

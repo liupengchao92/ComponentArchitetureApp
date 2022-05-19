@@ -39,7 +39,6 @@ class CommonWebActivity : BaseActivity() {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
             setNavigationIcon(R.drawable.ic_back_white)
-
         }
 
         webView.run {
@@ -90,15 +89,6 @@ class CommonWebActivity : BaseActivity() {
             return true
         }
         return super.onKeyDown(keyCode, event);
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        if (item.itemId == android.R.id.home) {
-            finish()
-            return true
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     inner class CustomWebViewClient : WebViewClient() {

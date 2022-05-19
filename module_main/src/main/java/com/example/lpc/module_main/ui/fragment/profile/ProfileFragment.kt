@@ -4,8 +4,10 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.ToastUtils
 import com.example.lpc.lib_common.base.fragment.BaseFragment
+import com.example.lpc.lib_common.constant.ARouterConstant
 import com.example.lpc.module_main.R
 import kotlinx.android.synthetic.main.fragment_profile.*
 
@@ -60,7 +62,7 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
                 ToastUtils.showShort(R.string.my_share)
             }
             R.id.settingLayout -> {
-                ToastUtils.showShort(R.string.my_setting)
+                ARouter.getInstance().build(ARouterConstant.Profile.SETTING_PATH).navigation()
             }
         }
     }
