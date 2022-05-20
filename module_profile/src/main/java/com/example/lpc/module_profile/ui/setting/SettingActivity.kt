@@ -33,6 +33,8 @@ class SettingActivity : BaseBindingActivity<ActivitySettingBinding>() {
             setNavigationIcon(R.drawable.ic_back_black)
         }
 
+        binding.darkSwitchButton.setOnCheckedChangeListener { buttonView, isChecked -> ToastUtils.showShort(" 是否选中${isChecked}") }
+
         binding.accountLayout.setOnClickListener(onClickListener)
         binding.clearCacheLayout.setOnClickListener(onClickListener)
         binding.feedbackLayout.setOnClickListener(onClickListener)
