@@ -4,7 +4,7 @@
     android:id="@+id/itemView"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:background="?android:attr/selectableItemBackground">
+    android:background="@drawable/selector_item_click_background">
 
     <ImageView
         android:id="@+id/coverIv"
@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:text="时间"
-        android:textColor="@color/gray"
+        android:textColor="@color/color_sub_text"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@id/coverIv"
         app:layout_constraintLeft_toRightOf="@id/coverIv"

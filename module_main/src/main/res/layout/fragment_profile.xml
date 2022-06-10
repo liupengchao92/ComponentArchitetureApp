@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/white">
+    android:background="@color/color_profile_bg">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView_top"

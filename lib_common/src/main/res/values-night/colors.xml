@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--主题颜色-->
-    <color name="colorPrimary">#002FA7</color>
+    <color name="colorPrimary">#121212</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#00000000</color>
 
     <color name="color_09bb07">#09bb07</color>
     <color name="color_0c0c0c">#0C0C0C</color>
     <color name="color_e5e5e5">#e5e5e5</color>
     <color name="ccffffff">#ccffffff</color>
-    <color name="color_f2f2f2">#F2F2F2</color>
+    <color name="color_f2f2f2">#000000</color>
     <color name="color_FFF3E0">#FFF3E0</color>
     <color name="lightyellow">#ffffe0</color><!--亮黄色 -->
     <color name="yellow">#ffff00</color><!--黄色 -->
@@ -159,24 +159,22 @@
     <color name="blue">#0000ff</color><!--蓝色 -->
     <color name="mediumblue">#0000cd</color><!--中兰色 -->
     <color name="darkblue">#00008b</color><!--暗蓝色 -->
-    <color name="navy">#000080</color><!--海军色 -->\
-
-
+    <color name="navy">#000080</color><!--海军色 -->
 
     <!--################### 业务相关颜色 ###################-->
-    <color name="color_article_item_bg">#FFFFFF</color>
-    <color name="color_sub_text">#808080</color>
-    <color name="color_item_click_normal">#FFFFFF</color>
-    <color name="color_item_click_press">#E0E0E0</color>
-    <color name="color_navigation_tag_bg">#f8f8ff</color>
-    <color name="color_navigation_tag_item_bg">#f5fffa</color>
-    <color name="color_navigation_select_bg">#FFFFFF</color>
-    <color name="color_navigation_tag_text">#191919</color>
-    <color name="color_profile_bg">#FFFFFF</color>
-    <color name="color_icon">#002FA7</color>
-    <color name="color_search_bg">#4169e1</color>
-    <color name="color_delete_icon">#d81e06</color>
-    <color name="color_author_select_color">#002FA7</color>
+    <color name="color_article_item_bg">#424242</color>
+    <color name="color_sub_text">#fffafa</color>
+    <color name="color_item_click_normal">#424242</color>
+    <color name="color_item_click_press">#686868</color>
+    <color name="color_navigation_tag_bg">#424242</color>
+    <color name="color_navigation_tag_item_bg">#424242</color>
+    <color name="color_navigation_select_bg">#686868</color>
+    <color name="color_navigation_tag_text">#FFFFFF</color>
+    <color name="color_profile_bg">#000000</color>
+    <color name="color_icon">#FFFFFF</color>
+    <color name="color_search_bg">#424242</color>
+    <color name="color_delete_icon">#FFFFFF</color>
+    <color name="color_author_select_color">#FFFFFF</color>
     <color name="color_night_white">#FFFFFF</color>
 
 
