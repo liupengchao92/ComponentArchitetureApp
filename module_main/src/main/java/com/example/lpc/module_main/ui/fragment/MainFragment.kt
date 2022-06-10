@@ -1,9 +1,12 @@
 package com.example.lpc.module_main.ui.fragment
 
+import android.content.res.Configuration
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ColorUtils
+import com.blankj.utilcode.util.LogUtils
 import com.example.lpc.lib_common.base.fragment.BaseBindingFragment
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.DISCOVER
 import com.example.lpc.lib_common.constant.CommonConstant.MainFrameworkPage.HOME
@@ -28,6 +31,8 @@ import kotlinx.android.synthetic.main.fragment_main.*
  */
 class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
 
+    private val viewModel  by viewModels<MainViewModel>()
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -38,7 +43,7 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
     override fun onCreate() {
         BarUtils.addMarginTopEqualStatusBarHeight(statusBarView)
         //默认选中第一个
-        setCurrentPage(HOME)
+        setCurrentPage(viewModel.currentPage.value!!)
         //添加监听
         binding.bottomNavigationView.setOnItemSelectedListener(onItemClickListener)
 
@@ -77,6 +82,8 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
 
 
     private fun setCurrentPage(page: String) {
+
+        viewModel.currentPage.value = page;
 
         childFragmentManager?.let {
 
@@ -179,5 +186,11 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
             ColorUtils.getColor(if (isLightMode) R.color.white else R.color.colorPrimary)
         )
         BarUtils.setStatusBarLightMode(requireActivity(), isLightMode)
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+
+        LogUtils.d("onConfigurationChanged===================>>")
     }
 }

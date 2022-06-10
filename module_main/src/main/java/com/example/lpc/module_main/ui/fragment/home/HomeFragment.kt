@@ -131,7 +131,7 @@ class HomeFragment : BaseFragment() {
             hotKeyList.forEach {
                 text = TextView(requireContext())
                 text.text = it.name
-                text.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                text.setTextColor(ContextCompat.getColor(requireContext(), R.color.color_night_white))
 
                 params = FrameLayout.LayoutParams(
                     FrameLayout.LayoutParams.WRAP_CONTENT,

@@ -4,6 +4,7 @@
     <string name="setting">设置</string>
     <string name="accounts_security">账号与安全</string>
     <string name="dark_pattern">暗黑模式</string>
+    <string name="follow_system_dark_model">跟随系统暗黑模式</string>
     <string name="clear_cache">清除缓存</string>
     <string name="check_version">检查版本</string>
     <string name="about_android">关于玩Android</string>
