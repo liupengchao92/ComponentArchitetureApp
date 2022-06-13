@@ -8,6 +8,15 @@ package com.example.lpc.lib_common.constant
  */
 object ARouterConstant {
 
+    object Service{
+
+        private const val SERVICE = "/service"
+
+        const val SERVICE_COLLECT = "$SERVICE/collect"
+
+    }
+
+
     object Common {
 
         private const val COMMON = "/common"
@@ -47,5 +56,7 @@ object ARouterConstant {
         private const val PROFILE = "/profile"
 
         const val SETTING_PATH = "${PROFILE}/setting"
+
+        const val COLLECT_PATH = "${PROFILE}/collect"
     }
 }
