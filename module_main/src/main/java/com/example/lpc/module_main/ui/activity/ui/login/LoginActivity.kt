@@ -69,8 +69,8 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
                 updateUiWithUser(loginResult.success)
                 setResult(Activity.RESULT_OK)
                 //Complete and destroy login activity once successful
-                finish()
                 startActivity(Intent(this, MainActivity::class.java))
+                finish()
             }
         })
 
