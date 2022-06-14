@@ -9,5 +9,6 @@
     <string name="check_version">检查版本</string>
     <string name="about_android">关于玩Android</string>
     <string name="feedback">用户反馈</string>
+    <string name="my_favorite">我的收藏</string>
 
 </resources>

@@ -58,7 +58,6 @@ class ProfileFragment : BaseFragment(), View.OnClickListener {
                 ToastUtils.showShort(R.string.my_integral)
             }
             R.id.favoriteLayout -> {
-                ToastUtils.showShort(R.string.my_favorite)
                 ARouter.getInstance().build(ARouterConstant.Profile.COLLECT_PATH).navigation()
 
             }
