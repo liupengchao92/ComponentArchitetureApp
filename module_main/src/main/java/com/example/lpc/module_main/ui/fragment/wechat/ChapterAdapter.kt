@@ -29,7 +29,7 @@ class ChapterAdapter : BaseQuickAdapter<WxChapter, BaseViewHolder>(R.layout.item
         //选中位置
         if (selectPosition == holder.bindingAdapterPosition) {
 
-            ColorUtils.getColor(R.color.colorPrimary).let { color ->
+            ColorUtils.getColor(R.color.color_author_select_color).let { color ->
 
                 holder.getView<CircleImageView>(R.id.iv_head).borderColor = color
 

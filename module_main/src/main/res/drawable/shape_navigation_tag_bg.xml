@@ -3,6 +3,6 @@
 
     <corners android:radius="20dp"/>
 
-    <solid android:color="@color/ghostwhite"/>
+    <solid android:color="@color/color_navigation_tag_item_bg"/>
 
 </shape>

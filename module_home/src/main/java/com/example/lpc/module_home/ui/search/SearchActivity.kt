@@ -174,9 +174,9 @@ class SearchActivity : BaseBindingActivity<ActivitySearchBinding>() {
 
                 gravity = Gravity.CENTER
 
-                setPadding(20, 8, 20, 8)
+                setPadding(30, 8, 30, 8)
 
-                setTextColor(ContextCompat.getColor(this.context, R.color.colorPrimary))
+                setTextColor(ContextCompat.getColor(this.context, R.color.color_navigation_tag_text))
 
                 setBackgroundResource(R.drawable.shape_search_tag_bg)
             }

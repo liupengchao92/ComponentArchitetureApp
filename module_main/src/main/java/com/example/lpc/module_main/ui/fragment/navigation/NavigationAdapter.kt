@@ -23,7 +23,7 @@ class NavigationAdapter(datas: MutableList<Navigation>) :
         holder.setText(R.id.tv_name, item.name)
         //
         if (selectPosition == holder.adapterPosition) {
-            holder.itemView.setBackgroundColor(Color.WHITE)
+            holder.itemView.setBackgroundColor(ContextCompat.getColor(context,R.color.color_navigation_select_bg))
         } else {
             holder.itemView.setBackgroundColor(
                 ContextCompat.getColor(

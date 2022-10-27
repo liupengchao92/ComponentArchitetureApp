@@ -3,7 +3,7 @@
 
     <corners android:radius="20dp"/>
 
-    <solid android:color="@color/whitesmoke"/>
+    <solid android:color="@color/color_navigation_tag_item_bg"/>
 
     <stroke android:color="@color/colorPrimary" android:width="1px"/>
 

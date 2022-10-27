@@ -50,6 +50,7 @@ class SplashActivity : BaseActivity() {
         } else {
             //跳转到登录页面
             ARouter.getInstance().build(ARouterConstant.Main.LOGIN_PATH).navigation()
+            finish()
         }
 
         loginViewModel.loginResult.observe(this) {

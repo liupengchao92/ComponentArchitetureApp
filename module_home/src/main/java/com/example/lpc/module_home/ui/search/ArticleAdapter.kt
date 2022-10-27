@@ -42,6 +42,6 @@ class ArticleAdapter(var datas: MutableList<Article>) :
 
     override fun addData(newData: Collection<Article>) {
         super.addData(newData)
-        page++;
+        page++
     }
 }

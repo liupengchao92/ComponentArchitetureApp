@@ -203,4 +203,14 @@ interface APIService {
     ): Response<BaseVo<PageVo<Article>>>
 
 
+    /**
+     * 我的收藏列表
+     *https://www.wanandroid.com/lg/collect/list/0/json
+     * @param page Int
+     * @return Response<BaseVo<PageVo<Article>>>
+     */
+    @GET("/lg/collect/list/{page}/json")
+    suspend fun getCollectList(@Path("page") page: Int): Response<BaseVo<PageVo<Article>>>
+
+
 }

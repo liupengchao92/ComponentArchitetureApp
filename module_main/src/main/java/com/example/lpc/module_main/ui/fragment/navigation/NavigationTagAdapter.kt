@@ -31,7 +31,7 @@ class NavigationTagAdapter(tags: MutableList<Article>) : TagAdapter<Article>(tag
 
             setPadding(30, 8, 30, 8)
 
-            setTextColor(ContextCompat.getColor(this.context, R.color.color_0c0c0c))
+            setTextColor(ContextCompat.getColor(this.context, R.color.color_navigation_tag_text))
 
             setBackgroundResource(R.drawable.shape_navigation_tag_bg)
         }

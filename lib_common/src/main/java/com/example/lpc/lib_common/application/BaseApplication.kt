@@ -3,6 +3,7 @@ package com.example.lpc.lib_common.application
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.lpc.api.AppInitManager
+import com.example.lpc.lib_common.utils.DarkModeUtils
 
 /**
  * Author: liupengchao
@@ -26,8 +27,10 @@ open class BaseApplication() : Application() {
         ARouter.init(this)
         ARouter.openLog()
         ARouter.openDebug()
-
+        //初始化任务
         AppInitManager.start(this)
+        //暗黑模式
+        DarkModeUtils.init()
 
     }
 
