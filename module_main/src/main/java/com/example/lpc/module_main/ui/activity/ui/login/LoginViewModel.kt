@@ -28,7 +28,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
             if (result is Results.Success) {
                 _loginResult.value =
-                    LoginResult(success =  result.data)
+                    LoginResult(success = result.data)
 
             } else {
 
@@ -65,12 +65,12 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         return if (username.contains('@')) {
             Patterns.EMAIL_ADDRESS.matcher(username).matches()
         } else {
-            username.isNotBlank()
+            !username.isNullOrBlank()
         }
     }
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
-        return password.isNotEmpty() && password.length > 5
+        return !password.isNullOrBlank() && password.length > 5
     }
 }
