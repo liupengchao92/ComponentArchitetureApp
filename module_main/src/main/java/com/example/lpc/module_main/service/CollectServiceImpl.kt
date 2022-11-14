@@ -9,7 +9,7 @@ import com.blankj.utilcode.util.FragmentUtils
 import com.blankj.utilcode.util.LogUtils
 import com.example.lpc.lib_common.constant.ARouterConstant
 import com.example.lpc.lib_common.http.pojo.PersonalInfo
-import com.example.lpc.lib_common.service.CollectService
+import com.example.lpc.lib_common.utils.service.CollectService
 import com.example.lpc.module_main.ui.activity.MainActivity
 import com.example.lpc.module_main.ui.fragment.project.PersonInfoManager
 

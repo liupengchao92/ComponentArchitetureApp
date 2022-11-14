@@ -10,7 +10,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.LogUtils
 import com.example.lpc.lib_common.base.activity.BaseBindingActivity
 import com.example.lpc.lib_common.constant.ARouterConstant
-import com.example.lpc.lib_common.service.CollectService
+import com.example.lpc.lib_common.utils.service.CollectService
 import com.example.lpc.module_profile.R
 import com.example.lpc.module_profile.databinding.ActivityCollectBinding
 

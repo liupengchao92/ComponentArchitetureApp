@@ -1,4 +1,4 @@
-package com.example.lpc.lib_common.service
+package com.example.lpc.lib_common.utils.service
 
 import com.alibaba.android.arouter.facade.template.IProvider
 import com.example.lpc.lib_common.http.pojo.PersonalInfo
