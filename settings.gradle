@@ -7,7 +7,7 @@ dependencyResolutionManagement {
 
         maven { url "https://gitee.com/LpcZoom/sub-component-arr.git" }
 
-        maven {url "https://raw.githubusercontent.com/liupengchao92/TestArr/master"}
+       // maven {url "https://raw.githubusercontent.com/liupengchao92/TestArr/master"}
 
         maven { url "https://s01.oss.sonatype.org/content/groups/public" }
 
@@ -16,13 +16,15 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "ComponentAchitecture"
+
 include ':app'
 include ':annotation'
 include ':compile'
 include ':lib_common'
 include ':lib_init_api'
+include ':lib_service'
 
 include ':module_main'
 include ':module_home'
 include ':module_profile'
-include ':lib_service'
+include ':moudle_web'
