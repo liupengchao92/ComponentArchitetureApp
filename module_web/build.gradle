@@ -4,7 +4,7 @@ apply plugin: 'org.jetbrains.kotlin.android'
 android {
     defaultConfig {
         if (!Boolean.parseBoolean(isRelease)) {
-            applicationId "com.example.moudle_web"
+            applicationId "com.example.module_web"
         }
     }
 }

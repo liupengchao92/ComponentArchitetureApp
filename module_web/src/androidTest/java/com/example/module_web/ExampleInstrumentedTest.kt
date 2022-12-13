@@ -1,4 +1,4 @@
-package com.example.moudle_web
+package com.example.module_web
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
