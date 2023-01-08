@@ -1,2 +1,2 @@
 # ComponentArchitetureApp
-组件化尝试
+该项目是我个人基于鸿洋大神的玩android开放API开发的一款高颜值的app，这个项目实现组件化方案。
